@@ -1,0 +1,202 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Hate Speech Annotation Guide</title>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;700&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --primary-blue: #0066FF;
+            --text-color: #333333;
+            --background-color: #FFFFFF;
+        }
+
+        body {
+            font-family: 'Inter', sans-serif;
+            line-height: 1.6;
+            margin: 0;
+            padding: 0;
+            color: var(--text-color);
+            background-color: var(--background-color);
+        }
+
+        header {
+            background-color: var(--background-color);
+            padding: 1rem 2rem;
+            position: fixed; /* Ensures the menu stays fixed when scrolling */
+            width: 100%;
+            top: 0;
+            left: 0;
+            z-index: 1000;
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1); /* Keep shadow on the menu */
+        }
+
+        nav {
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        nav ul {
+            list-style-type: none;
+            padding: 0;
+            margin: 0;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        nav ul li {
+            margin: 0 10px;
+        }
+
+        nav ul li a {
+            color: var(--text-color);
+            text-decoration: none; /* No underline by default */
+            font-weight: 500;
+            padding: 0.5rem 1rem;
+            border-radius: 20px;
+            transition: color 0.3s;
+        }
+
+        nav ul li a:hover {
+            color: var(--primary-blue); /* Change text color on hover */
+            text-decoration: none; /* No underline on hover */
+            background-color: transparent; /* No background or shadow on hover */
+        }
+
+        main {
+            max-width: 1200px;
+            margin: 100px auto 0;
+            padding: 20px;
+        }
+
+        .button {
+            display: inline-block;
+            padding: 10px 20px;
+            background-color: var(--primary-blue);
+            color: white;
+            border: none;
+            border-radius: 30px; /* Rounded buttons */
+            font-size: 1rem;
+            text-align: center;
+            cursor: pointer;
+            transition: box-shadow 0.3s, transform 0.2s;
+            margin: 10px 5px;
+            text-decoration: none;
+        }
+
+        .button:hover {
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2); /* Shadow effect on hover */
+            transform: translateY(-2px); /* Slight lift on hover */
+        }
+
+        section {
+            display: none; /* Hide all sections by default */
+        }
+
+        section.active {
+            display: block; /* Show the active section */
+        }
+
+        h2 {
+            color: var(--text-color);
+            font-weight: 700;
+            font-size: 2rem;
+            margin-bottom: 0.5rem;
+        }
+
+        p {
+            margin-bottom: 1rem;
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <nav>
+            <ul>
+                <li><a href="#" onclick="showSection('home')">Home</a></li>
+                <li><a href="#" onclick="showSection('general-rules')">General Rules</a></li>
+                <li><a href="#" onclick="showSection('target-groups')">Target Groups</a></li>
+                <li><a href="#" onclick="showSection('offensive-denomination')">Offensive Denomination</a></li>
+                <li><a href="#" onclick="showSection('intent')">Intent</a></li>
+                <li><a href="#" onclick="showSection('offensive-words')">Offensive Words</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <main>
+        <section id="home" class="active">
+            <h2>Hate Speech Annotation Guidelines</h2>
+            <h3>Introduction</h3>
+            
+            <p>Hate speech encompasses any form of expression 
+                that can incite, promote, or justify hatred, violence, or 
+                discrimination against a person or group based on race, religion, 
+                ethnicity, gender, disability, working class, ideology or sexual orientation. 
+                It can manifest explicitly through clear, direct language, such as racial slurs 
+                or calls for violence against a group ("All [group] should be expelled from the country"). 
+                Conversely, it can appear implicitly through more subtle means, such as coded language or 
+                stereotypes that indirectly suggest negativity ("Those people are always causing trouble," 
+                where "those people" refers to a specific ethnic or racial group).
+            </p>
+
+            <p> 
+                This project aims to create the first token-level annotated corpus identifying instances of hate speech focused on specific groups, along with the detection of explicit and implicit expressions of hate. This annotation guide is designed to support annotators and will utilize INCEpTION software, which is standard in the field.
+                The dataset generated from this guide will be instrumental in enhancing algorithms for detecting hate speech, extending beyond traditional detection methods by also annotating group mentions, offensive denominations, offensive words and the intent behind the hate speech. This token-level annotation approach provides deeper insights into the context and specific targets of hate speech, thus improving the precision of detection systems. Additionally, the dataset will increase transparency regarding the criteria used by automated systems to identify hate speech, helping users understand the detailed decision-making process behind content moderation.
+                A key component of this project involves a pre-annotation process where data output from a Language Model (LLM) is initially reviewed to ensure a diverse representation of group mentions, offensive denominations, types of attacks, and non-hate content.
+                To ensure the highest quality of annotation, we will implement a rigorous pre-annotation process coupled with a training regimen that utilizes the flashcard spaced repetition method. This method is specifically designed to ensure that annotators thoroughly learn and understand the task requirements. 
+                By reinforcing knowledge consistently over time, it aims to boost retention and proficiency. The process will also assess the inter-agreement among annotators, requiring that it exceed a specified threshold. Annotators whose performance falls below this threshold will not be included in the main annotation tasks, as their lower inter-agreement rates may indicate a performance that does not meet our project’s standards for accuracy and consistency.
+                By addressing the data post-LLM processing and rigorously screening annotator consistency, we aim to correct and balance the dataset effectively. This step seeks to avoid perpetuating any biases that might be present in the initial LLM outputs. <br> 
+                The fundamental premise governing all annotation rules in this protocol is to annotate the shortest and most general expression possible, ensuring that the entity is fully described, even if it requires an understanding of the context that spans over more than one of the preceding sentences. <br>
+                In this sense, modifying words should be excluded. The annotation rules can be classified into 4 types:
+            </p>
+
+            <a href="#" class="button" onclick="showSection('general-rules')">General Rules</a>
+            <a href="#" class="button" onclick="showSection('target-groups')">Target Groups</a>
+            <a href="#" class="button" onclick="showSection('offensive-denomination')">Offensive Denomination</a>
+            <a href="#" class="button" onclick="showSection('intent')">Intent</a>
+            <a href="#" class="button" onclick="showSection('offensive-words')">Offensive Words</a>
+        </section>
+
+        <section id="general-rules">
+            <h2>General Rules</h2>
+            <p>This section outlines the general rules and guidelines that all members of our community are expected to follow.</p>
+        </section>
+
+        <section id="target-groups">
+            <h2>Target Groups</h2>
+            <p>Information about the specific groups or demographics that our guidelines are designed to protect and support.</p>
+        </section>
+
+        <section id="offensive-denomination">
+            <h2>Offensive Denomination</h2>
+            <p>This section provides information on what constitutes offensive denomination and how to avoid it in professional contexts.</p>
+        </section>
+
+        <section id="intent">
+            <h2>Intent</h2>
+            <p>An explanation of how intent is considered when evaluating potentially offensive or inappropriate behavior.</p>
+        </section>
+
+        <section id="offensive-words">
+            <h2>Offensive Words</h2>
+            <p>A guide to understanding and avoiding offensive language in professional settings.</p>
+        </section>
+    </main>
+
+    <script>
+        function showSection(sectionId) {
+            const sections = document.querySelectorAll('section');
+            sections.forEach(section => {
+                section.classList.remove('active');
+            });
+
+            const selectedSection = document.getElementById(sectionId);
+            if (selectedSection) {
+                selectedSection.classList.add('active');
+            }
+        }
+    </script>
+</body>
+</html>
