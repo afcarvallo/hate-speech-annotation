@@ -9,7 +9,9 @@
         :root {
             --primary-blue: #0066FF;
             --text-color: #333333;
-            --background-color: #FFFFFF;
+            --background-color: #F8F9FA;
+            --box-background-color: #FFFFFF;
+            --box-shadow: rgba(0, 0, 0, 0.1) 0px 4px 12px;
         }
 
         body {
@@ -24,12 +26,12 @@
         header {
             background-color: var(--background-color);
             padding: 1rem 2rem;
-            position: fixed; /* Ensures the menu stays fixed when scrolling */
+            position: fixed;
             width: 100%;
             top: 0;
             left: 0;
             z-index: 1000;
-            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1); /* Keep shadow on the menu */
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
         }
 
         nav {
@@ -52,7 +54,7 @@
 
         nav ul li a {
             color: var(--text-color);
-            text-decoration: none; /* No underline by default */
+            text-decoration: none;
             font-weight: 500;
             padding: 0.5rem 1rem;
             border-radius: 20px;
@@ -60,9 +62,8 @@
         }
 
         nav ul li a:hover {
-            color: var(--primary-blue); /* Change text color on hover */
-            text-decoration: none; /* No underline on hover */
-            background-color: transparent; /* No background or shadow on hover */
+            color: var(--primary-blue);
+            text-decoration: none;
         }
 
         main {
@@ -71,44 +72,70 @@
             padding: 20px;
         }
 
-        .button {
-            display: inline-block;
-            padding: 10px 20px;
-            background-color: var(--primary-blue);
-            color: white;
-            border: none;
-            border-radius: 30px; /* Rounded buttons */
-            font-size: 1rem;
-            text-align: center;
-            cursor: pointer;
-            transition: box-shadow 0.3s, transform 0.2s;
-            margin: 10px 5px;
-            text-decoration: none;
+        .box {
+            background-color: var(--box-background-color);
+            padding: 20px;
+            border-radius: 12px;
+            box-shadow: var(--box-shadow);
+            margin-bottom: 20px;
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
         }
 
-        .button:hover {
-            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2); /* Shadow effect on hover */
-            transform: translateY(-2px); /* Slight lift on hover */
-        }
-
-        section {
-            display: none; /* Hide all sections by default */
-        }
-
-        section.active {
-            display: block; /* Show the active section */
-        }
-
-        h2 {
+        h2, h3 {
             color: var(--text-color);
             font-weight: 700;
-            font-size: 2rem;
             margin-bottom: 0.5rem;
         }
 
         p {
             margin-bottom: 1rem;
+            color: #555;
         }
+
+        .button {
+            padding: 10px 20px;
+            background-color: var(--primary-blue);
+            color: white;
+            border: none;
+            border-radius: 30px;
+            font-size: 1rem;
+            text-align: center;
+            cursor: pointer;
+            transition: box-shadow 0.3s, transform 0.2s;
+            margin-top: 10px;
+            text-decoration: none;
+        }
+
+        .button:hover {
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+            transform: translateY(-2px);
+        }
+
+        .grid-container {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 20px;
+        }
+
+        /* Initially hide all sections except home */
+        section {
+            display: none;
+        }
+
+        section.active {
+            display: block;
+        }
+
+        .example-image {
+            max-width: 100%;
+            height: auto;
+            margin-top: 20px;
+            border-radius: 8px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+        }
+
     </style>
 </head>
 <body>
@@ -118,70 +145,163 @@
                 <li><a href="#" onclick="showSection('home')">Home</a></li>
                 <li><a href="#" onclick="showSection('general-rules')">General Rules</a></li>
                 <li><a href="#" onclick="showSection('target-groups')">Target Groups</a></li>
-                <li><a href="#" onclick="showSection('offensive-denomination')">Offensive Denomination</a></li>
-                <li><a href="#" onclick="showSection('intent')">Intent</a></li>
+                <li><a href="#" onclick="showSection('offensive-denomination')">Offensive Denominations</a></li>
+                <li><a href="#" onclick="showSection('intent')">Hate Intent</a></li>
                 <li><a href="#" onclick="showSection('offensive-words')">Offensive Words</a></li>
             </ul>
         </nav>
     </header>
 
     <main>
+        <!-- Introduction Section -->
         <section id="home" class="active">
-            <h2>Hate Speech Annotation Guidelines</h2>
+            <h2>Welcome to the Hate Speech Annotation Guide</h2>
             <h3>Introduction</h3>
+            <p>
+                Hate speech is any form of expression that incites hatred or violence against a group based on characteristics like race, religion, gender, or sexual orientation. It can be <strong>explicit</strong> (direct insults or threats) or <strong>implicit</strong> (coded language or stereotypes).
+            </p>
             
-            <p>Hate speech encompasses any form of expression 
-                that can incite, promote, or justify hatred, violence, or 
-                discrimination against a person or group based on race, religion, 
-                ethnicity, gender, disability, working class, ideology or sexual orientation. 
-                It can manifest explicitly through clear, direct language, such as racial slurs 
-                or calls for violence against a group ("All [group] should be expelled from the country"). 
-                Conversely, it can appear implicitly through more subtle means, such as coded language or 
-                stereotypes that indirectly suggest negativity ("Those people are always causing trouble," 
-                where "those people" refers to a specific ethnic or racial group).
+            <h3>Annotation Process Overview</h3>
+            <p>
+                <strong>Pre-annotation:</strong> Data is pre-processed using a Language Model (LLM) to highlight potential hate speech.<br>
+                <strong>Consistency:</strong> Your role will consist of reviewing annotations made by the LLM.<br>
             </p>
 
-            <p> 
-                This project aims to create the first token-level annotated corpus identifying instances of hate speech focused on specific groups, along with the detection of explicit and implicit expressions of hate. This annotation guide is designed to support annotators and will utilize INCEpTION software, which is standard in the field.
-                The dataset generated from this guide will be instrumental in enhancing algorithms for detecting hate speech, extending beyond traditional detection methods by also annotating group mentions, offensive denominations, offensive words and the intent behind the hate speech. This token-level annotation approach provides deeper insights into the context and specific targets of hate speech, thus improving the precision of detection systems. Additionally, the dataset will increase transparency regarding the criteria used by automated systems to identify hate speech, helping users understand the detailed decision-making process behind content moderation.
-                A key component of this project involves a pre-annotation process where data output from a Language Model (LLM) is initially reviewed to ensure a diverse representation of group mentions, offensive denominations, types of attacks, and non-hate content.
-                To ensure the highest quality of annotation, we will implement a rigorous pre-annotation process coupled with a training regimen that utilizes the flashcard spaced repetition method. This method is specifically designed to ensure that annotators thoroughly learn and understand the task requirements. 
-                By reinforcing knowledge consistently over time, it aims to boost retention and proficiency. The process will also assess the inter-agreement among annotators, requiring that it exceed a specified threshold. Annotators whose performance falls below this threshold will not be included in the main annotation tasks, as their lower inter-agreement rates may indicate a performance that does not meet our project’s standards for accuracy and consistency.
-                By addressing the data post-LLM processing and rigorously screening annotator consistency, we aim to correct and balance the dataset effectively. This step seeks to avoid perpetuating any biases that might be present in the initial LLM outputs. <br> 
-                The fundamental premise governing all annotation rules in this protocol is to annotate the shortest and most general expression possible, ensuring that the entity is fully described, even if it requires an understanding of the context that spans over more than one of the preceding sentences. <br>
-                In this sense, modifying words should be excluded. The annotation rules can be classified into 4 types:
-            </p>
+            <h3>Example of NER Annotation Platform</h3>
+            <p>Below is an example of our NER (Named Entity Recognition) annotation platform, which you'll be using to annotate hate speech:</p>
+            <img src="images/ner_platform_example.png" alt="NER Annotation Platform Example" class="example-image">
+            <p>This platform allows you to tag different elements of text, such as group mentions, offensive words, and intents, using a variety of pre-defined labels.</p>
 
-            <a href="#" class="button" onclick="showSection('general-rules')">General Rules</a>
-            <a href="#" class="button" onclick="showSection('target-groups')">Target Groups</a>
-            <a href="#" class="button" onclick="showSection('offensive-denomination')">Offensive Denomination</a>
-            <a href="#" class="button" onclick="showSection('intent')">Intent</a>
-            <a href="#" class="button" onclick="showSection('offensive-words')">Offensive Words</a>
+            <p> This guide helps annotators identify and annotate explicit and implicit forms of hate speech, focusing on: </p>
+
+            <!-- Brief definitions with Learn More buttons in 4 columns -->
+            <div class="grid-container">
+                <div class="box">
+                    <h3>General Rules</h3>
+                    <p>
+                    Positive and negative rules that apply to all mention labels, including general spelling rules.
+                    </p>
+                    <a href="#" class="button" onclick="showSection('general-rules')">Learn More</a>
+                </div>
+
+                <div class="box">
+                    <h3>Group Mentions</h3>
+                    <p>
+                        Identify mentions of specific groups (e.g., races, ethnicities, religions). Both direct and implied mentions should be annotated.
+                    </p>
+                    <a href="#" class="button" onclick="showSection('target-groups')">Learn More</a>
+                </div>
+
+                <div class="box">
+                    <h3>Offensive Denominations</h3>
+                    <p>
+                        Annotate any slurs, derogatory terms, or offensive names used to describe individuals or groups.
+                    </p>
+                    <a href="#" class="button" onclick="showSection('offensive-denomination')">Learn More</a>
+                </div>
+
+                <div class="box">
+                    <h3>Intent</h3>
+                    <p>
+                        Evaluate the intent behind the statement, namely derogation, hatecrime, animosity, comparison or threatening.
+                    </p>
+                    <a href="#" class="button" onclick="showSection('intent')">Learn More</a>
+                </div>
+
+                <div class="box">
+                    <h3>Offensive Words</h3>
+                    <p>
+                        Tag offensive words, including insults, threats, or calls for violence.
+                    </p>
+                    <a href="#" class="button" onclick="showSection('offensive-words')">Learn More</a>
+                </div>
+            </div>
         </section>
 
+        <!-- General Rules Section -->
         <section id="general-rules">
-            <h2>General Rules</h2>
-            <p>This section outlines the general rules and guidelines that all members of our community are expected to follow.</p>
+            <div class="box">
+                <h2>General Rules</h2>
+                <p>
+                <strong>Positive</strong>, <strong>negative</strong> and <strong>multi-word</strong> rules that apply to all mention labels, including general spelling rules.
+                </p>
+
+                <li>Do not include spaces, special characters or punctuation marks that appear before or after each mention in the label.</li>
+                <li>Sometimes, the to-be-annotated text fragment might go beyond the boundaries of a single sentence.</li>
+                <li>One should bear that in the same sentence more than one annotation can be used. </li>
+
+                <h2>Positive Rules</h2>
+                <p>
+                    Rules specifying the entities that should be annotated:
+                </p>
+
+                <li>Every mention to groups in the following categories: ethnicity, religion, sexual orientation, gender, disability, intersectional. These labels will start with the prefix G. </li>
+                <li>Every offensive mention to groups in the preceding categories. These labels will start with the prefix I.</li>
+                <li>Every offensive/insulting word. </li>
+                <li>Every attack intent in the following categories: dehumanization, derogation, animosity, threatening, pro-hate. Generally speaking, attack intents correspond to text fragments (spans).</li>
+                <li>There can be more than one entity in one sentence </li>
+                <li>There can be annotations inside annotations. For example a group mentioned inside an intent.</li>
+                <li>Words containing orthographic errors or typos should be annotated as well.</li>
+                
+                <h2>Negative Rules</h2>
+                <p>
+                    Rules specifying the entities that should be annotated: 
+                </p>
+
+                <li>Every mention to groups not considered in the preceding categories.</li> 
+                <li> Negative connotative adjective, e.g., you are so lazy </li>
+                <li>Words that are implicit attacks in a context, but not out of context. e.g. “parasite” out of context is not an insult. E.g. These dishes are full of parasites.</li>
+
+                <h2>Multi-word Rules</h2>
+                <p>
+                    Rules specifying whether a group of words should be annotated under a single label.
+                </p>
+
+                <li>Both groups, attacks and offensive mentions can be composed by multi-words (n-grams). </li>
+
+                
+
+            </div>
         </section>
 
+        <!-- Group Mentions Section -->
         <section id="target-groups">
-            <h2>Target Groups</h2>
-            <p>Information about the specific groups or demographics that our guidelines are designed to protect and support.</p>
+            <div class="box">
+                <h2>Group Mentions</h2>
+                <p>
+                    Identify mentions of specific groups (e.g., races, ethnicities, religions). Both direct and implied mentions should be annotated.
+                </p>
+            </div>
         </section>
 
+        <!-- Offensive Denominations Section -->
         <section id="offensive-denomination">
-            <h2>Offensive Denomination</h2>
-            <p>This section provides information on what constitutes offensive denomination and how to avoid it in professional contexts.</p>
+            <div class="box">
+                <h2>Offensive Denominations</h2>
+                <p>
+                    Annotate any slurs, derogatory terms, or offensive names used to describe individuals or groups.
+                </p>
+            </div>
         </section>
 
+        <!-- Intent Section -->
         <section id="intent">
-            <h2>Intent</h2>
-            <p>An explanation of how intent is considered when evaluating potentially offensive or inappropriate behavior.</p>
+            <div class="box">
+                <h2>Intent</h2>
+                <p>
+                    Evaluate the intent behind the statement. Possible intents include derogation, animosity, hate crimes, threatening language, and comparison.
+                </p>
+            </div>
         </section>
 
+        <!-- Offensive Words Section -->
         <section id="offensive-words">
-            <h2>Offensive Words</h2>
-            <p>A guide to understanding and avoiding offensive language in professional settings.</p>
+            <div class="box">
+                <h2>Offensive Words</h2>
+                <p>
+                    Tag offensive words, including insults, threats, or calls for violence.
+                </p>
+            </div>
         </section>
     </main>
 
