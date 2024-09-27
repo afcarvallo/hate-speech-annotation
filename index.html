@@ -81,6 +81,7 @@
             display: flex;
             flex-direction: column;
             justify-content: space-between;
+            min-height: 400px; /* Adjust the value as needed */
         }
 
         h2, h3 {
@@ -135,8 +136,139 @@
             border-radius: 8px;
             box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
         }
+        
+        /* Custom highlight class */
+        .highlight {
+            background-color: rgba(0, 102, 255, 0.2); /* Lighter shade of blue with transparency */
+            color: #0066FF; /* Dark blue text color */
+            padding: 2px 4px;
+            border-radius: 4px;
+            font-weight: 500; /* Slightly bolder text */
+        }
+
+        .container {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 20px;
+        }
+        .box {
+            padding: 20px;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+        }
+        #offensive-words {
+            grid-column: 2 / span 2;
+            text-align: center;
+        } 
+
+        /* Group grid layout */
+        .group-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 20px;
+            margin-top: 20px;
+        }
+
+        /* Group card style */
+        .group-card {
+            background-color: #f9f9f9;
+            padding: 15px;
+            border-radius: 10px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+            text-align: center;
+            position: relative;
+            cursor: pointer;
+        }
+
+        .group-card h3 {
+            margin-bottom: 10px;
+            font-size: 1.2rem;
+        }
+
+        .group-card p {
+            font-size: 0.9rem;
+            color: #555;
+        }
+
+        .group-card:hover .example-overlay {
+            opacity: 1;
+            visibility: visible;
+        }
+
+        .group-card h3 {
+            margin-bottom: 10px;
+            font-size: 1.2rem;
+        }
+
+        .group-card p {
+            font-size: 0.9rem;
+            color: #555;
+        }
+
+        .example-overlay {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            background-color: rgba(0, 0, 0, 0.8);
+            color: #fff;
+            padding: 10px;
+            border-radius: 8px;
+            font-size: 0.9rem;
+            text-align: center;
+            visibility: hidden;
+            opacity: 0;
+            transition: opacity 0.3s ease, visibility 0.3s ease;
+            width: 80%;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+        }
+
+        /* Style for the rule boxes */
+        .rule-box {
+            background-color: #f9f9f9; /* Light background */
+            padding: 15px;
+            border-radius: 10px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+            margin-bottom: 20px; /* Spacing between boxes */
+        }
+
+        .rule-box h3 {
+            margin-bottom: 10px;
+            color: var(--primary-blue);
+            font-size: 1.2rem;
+        }
+
+        .rule-box ul {
+            padding-left: 20px; /* Indent for list */
+        }
+
+        .rule-box li {
+            margin-bottom: 10px; /* Spacing between list items */
+            color: #555; /* Subtle text color */
+        }
+
+                /* Style for the offensive word list */
+        .offensive-word-list {
+            list-style-type: none;
+            padding-left: 0;
+            margin-top: 20px;
+        }
+
+        .offensive-word-list li {
+            margin-bottom: 15px;
+            font-size: 1rem;
+        }
+
+        /* Highlight style for offensive words */
+        .highlight-offensive {
+            background-color: #FF6347; /* Use a red or orange color for offensive words */
+            color: white;
+            padding: 2px 4px;
+            border-radius: 4px;
+        }
 
     </style>
+
 </head>
 <body>
     <header>
@@ -146,8 +278,9 @@
                 <li><a href="#" onclick="showSection('general-rules')">General Rules</a></li>
                 <li><a href="#" onclick="showSection('target-groups')">Target Groups</a></li>
                 <li><a href="#" onclick="showSection('offensive-denomination')">Offensive Denominations</a></li>
-                <li><a href="#" onclick="showSection('intent')">Hate Intent</a></li>
+                <li><a href="#" onclick="showSection('intent')">Hate Speech Intent</a></li>
                 <li><a href="#" onclick="showSection('offensive-words')">Offensive Words</a></li>
+                <li><a href="#" onclick="showSection('examples')">Examples</a></li> <!-- New Examples menu link -->
             </ul>
         </nav>
     </header>
@@ -156,156 +289,342 @@
         <!-- Introduction Section -->
         <section id="home" class="active">
             <h2>Welcome to the Hate Speech Annotation Guide</h2>
-            <h3>Introduction</h3>
-            <p>
-                Hate speech is any form of expression that incites hatred or violence against a group based on characteristics like race, religion, gender, or sexual orientation. It can be <strong>explicit</strong> (direct insults or threats) or <strong>implicit</strong> (coded language or stereotypes).
-            </p>
-            
-            <h3>Annotation Process Overview</h3>
-            <p>
-                <strong>Pre-annotation:</strong> Data is pre-processed using a Language Model (LLM) to highlight potential hate speech.<br>
-                <strong>Consistency:</strong> Your role will consist of reviewing text span annotations made by the LLM.<br>
-            </p>
 
-            <h3>Example of the Named Entity Recognition Task</h3>
+            <br>
+            
+            <h3>Introduction</h3>
+            <p> <span class="highlight">Hate speech</span> is any form of expression that incites hatred or violence against a group based on characteristics like <span class="highlight">ethnicity</span>, <span class="highlight">disability </span> , <span class="highlight">religion</span>, <span class="highlight">gender</span>, <span class="highlight">working class</span> , <span class="highlight">idelogical group</span> , or <span class="highlight">sexual orientation</span>. </p>
+            <p> It can be <span class="highlight">explicit</span> (direct insults or threats) or <span class="highlight">implicit</span> (coded language or stereotypes). </p>
+            <p> This project aims to create the first <span class="highlight">token-level</span> annotated corpus identifying instances of hate speech focused on specific groups.</p>
+            <p> The dataset generated from this guide will be used for enhancing <span class="highlight">Named Entity Recognition (NER)</span> models for detecting <span class="highlight">hate speech</span>, extending beyond traditional detection methods annotating <span class="highlight">group mentions</span> , <span class="highlight">offensive denominations</span>, <span class="highlight-offensive">offensive words</span> and <span class="highlight">hate speech intent</span>.</p>
+            <p> This <span class="highlight">token-level</span> annotation approach provides <span class="highlight">deeper insights</span> into the context and specific targets of <span class="highlight">hate speech</span>. </p>
+            <p> Finally, the dataset and the resulting <span class="highlight">NER model</span> will increase <span class="highlight">explainability</span>, helping users understand the detailed <span class="highlight">decision-making</span> process behind <span class="highlight">content moderation</span>.</p>
+            <br>
+            
+
+
+            <h3>Annotation Process Overview</h3>
+            
+            <div style="text-align: center">
+            <img src="images/curation_process.png" style="width: 50%;">
+            </div>
+
+            <li><strong>LLM Pre-annotation:</strong> Data is pre-processed using a Language Model (LLM) to <span class="highlight-offensive">highlight potential hate speech</span> in a text.<br></li> 
+            <li> <strong>Data curation:</strong> Your role will consist of reviewing <span class="highlight">text span annotations</span> made by the LLM.<br> </li>
+            
+            <br>
+            
+
+            <h3>Named Entity Recognition Task Description</h3>
             
             <div style="text-align: center">
                 <img src="images/ner4.gif" alt="NER Annotation Platform Example" class="example-image" style="width: 50%;">
             </div>
 
-            <p>This tasks consists on tagging different elements of text, such as group mentions, offensive denomintaion , offensive words, and hate speech intents.</p>
-
-            <p> This guide helps annotators identify and annotate <strong>explicit</strong> and <strong>implicit</strong> forms of hate speech, focusing on: </p>
-
-            <!-- Brief definitions with Learn More buttons in 4 columns -->
-            <div class="grid-container">
-                <div class="box">
-                    <h3>General Rules</h3>
-                    <p>
-                    Positive and negative rules that apply to all mention labels, including general spelling rules.
-                    </p>
-                    <a href="#" class="button" onclick="showSection('general-rules')">Learn More</a>
-                </div>
-
-                <div class="box">
-                    <h3>Group Mentions</h3>
-                    <p>
-                        Identify mentions of specific groups (e.g., races, ethnicities, religions). Both direct and implied mentions should be annotated.
-                    </p>
-                    <a href="#" class="button" onclick="showSection('target-groups')">Learn More</a>
-                </div>
-
-                <div class="box">
-                    <h3>Offensive Denominations</h3>
-                    <p>
-                        Annotate any slurs, derogatory terms, or offensive names used to describe individuals or groups.
-                    </p>
-                    <a href="#" class="button" onclick="showSection('offensive-denomination')">Learn More</a>
-                </div>
-
-                <div class="box">
-                    <h3>Hate Intent</h3>
-                    <p>
-                        Evaluate the intent behind the statement, namely derogation, hatecrime, animosity, comparison or threatening.
-                    </p>
-                    <a href="#" class="button" onclick="showSection('intent')">Learn More</a>
-                </div>
-
-                <div class="box">
-                    <h3>Offensive Words</h3>
-                    <p>
-                        Tag offensive words, including insults, threats, or calls for violence.
-                    </p>
-                    <a href="#" class="button" onclick="showSection('offensive-words')">Learn More</a>
-                </div>
-            </div>
+            <p> This tasks consists on tagging different elements of text, such as <span class="highlight">group mentions</span>, <span class="highlight">offensive denomination</span> , <span class="highlight">offensive words</span>, and <span class="highlight">hate speech intent</span>.</p>
+            <p> The fundamental premise for all annotation rules in is to annotate the <span class="highlight">shortest</span> and <span class="highlight">most general expression possible</span>, ensuring that the entity is <span class="highlight">fully described</span>. In this sense, <span class="highlight">modifying words</span> should be excluded. </p>
+            
+            <br>
+            
+            <p> This guide helps annotators identify and annotate <span class="highlight">explicit</span> and <span class="highlight">implicit</span> forms of hate speech, focusing on: </p>
+            <ul>
+                <li> <strong>General Rules:</strong> Positive and negative rules for all mention labels.</li>
+                <li> <strong>Group Mentions:</strong> Identify mentions of specific groups (e.g., races, ethnicities, religions).</li>
+                <li> <strong>Offensive Denominations:</strong> Annotate slurs, derogatory terms, or offensive names for individuals or groups.</li>
+                <li> <strong>Hate Speech Intent:</strong> Evaluate the intent behind statements, including derogation, threats , hatecrime, comparison and animosity.</li>
+                <li> <strong>Offensive Words:</strong> Tag offensive words, including insults, threats, or calls for violence.</li>
+            </ul>
+            
         </section>
 
         <!-- General Rules Section -->
         <section id="general-rules">
             <div class="box">
                 <h2>General Rules</h2>
-                <p>
-                <strong>Positive</strong>, <strong>negative</strong> and <strong>multi-word</strong> rules that apply to all mention labels, including general spelling rules.
-                </p>
-
-                <li>Do not include spaces, special characters or punctuation marks that appear before or after each mention in the label.</li>
-                <li>Sometimes, the to-be-annotated text fragment might go beyond the boundaries of a single sentence.</li>
-                <li>One should bear that in the same sentence more than one annotation can be used. </li>
-
-                <h2>Positive Rules</h2>
-                <p>
-                    Rules specifying the entities that should be annotated:
-                </p>
-
-                <li>Every mention to groups in the following categories: ethnicity, religion, sexual orientation, gender, disability, intersectional. These labels will start with the prefix G. </li>
-                <li>Every offensive mention to groups in the preceding categories. These labels will start with the prefix I.</li>
-                <li>Every offensive/insulting word. </li>
-                <li>Every attack intent in the following categories: dehumanization, derogation, animosity, threatening, pro-hate. Generally speaking, attack intents correspond to text fragments (spans).</li>
-                <li>There can be more than one entity in one sentence </li>
-                <li>There can be annotations inside annotations. For example a group mentioned inside an intent.</li>
-                <li>Words containing orthographic errors or typos should be annotated as well.</li>
-                
-                <h2>Negative Rules</h2>
-                <p>
-                    Rules specifying the entities that should be annotated: 
-                </p>
-
-                <li>Every mention to groups not considered in the preceding categories.</li> 
-                <li> Negative connotative adjective, e.g., you are so lazy </li>
-                <li>Words that are implicit attacks in a context, but not out of context. e.g. “parasite” out of context is not an insult. E.g. These dishes are full of parasites.</li>
-
-                <h2>Multi-word Rules</h2>
-                <p>
-                    Rules specifying whether a group of words should be annotated under a single label.
-                </p>
-
-                <li>Both groups, attacks and offensive mentions can be composed by multi-words (n-grams). </li>
-
-                
-
+                <p><strong>Positive</strong>, <strong>negative</strong>, and <strong>multi-word</strong> rules that apply to all mention labels, including general spelling rules.</p>
+        
+                <!-- Positive Rules Box -->
+                <div class="rule-box">
+                    <h3>Positive Rules</h3>
+                    <p>Rules specifying the entities that should be annotated:</p>
+                    <ul>
+                        <li>Every mention to groups in the following categories: ethnicity, religion, sexual orientation, gender, disability, intersectional. These labels will start with the prefix <strong>G</strong>.</li>
+                        <li>Every offensive mention to groups in the preceding categories. These labels will start with the prefix <strong>I</strong>.</li>
+                        <li>Every offensive/insulting word.</li>
+                        <li>Every attack intent in the following categories: dehumanization, derogation, animosity, threatening, pro-hate.</li>
+                        <li>There can be more than one entity in a single sentence.</li>
+                        <li>There can be annotations inside annotations (e.g., a group mentioned inside an intent).</li>
+                        <li>Words containing orthographic errors or typos should be annotated as well.</li>
+                    </ul>
+                </div>
+        
+                <!-- Negative Rules Box -->
+                <div class="rule-box">
+                    <h3>Negative Rules</h3>
+                    <p>Rules specifying the entities that should <strong>not</strong> be annotated:</p>
+                    <ul>
+                        <li>Mentions of groups not considered in the preceding categories.</li>
+                        <li>Negative connotative adjectives (e.g., "you are so lazy").</li>
+                        <li>Words that are implicit attacks in context but not out of context (e.g., "parasite" used in "These dishes are full of parasites").</li>
+                    </ul>
+                </div>
+        
+                <!-- Multi-word Rules Box -->
+                <div class="rule-box">
+                    <h3>Multi-word Rules</h3>
+                    <p>Rules specifying whether a group of words should be annotated under a single label:</p>
+                    <ul>
+                        <li>Both groups, attacks, and offensive mentions can be composed of multi-words (n-grams).</li>
+                    </ul>
+                </div>
             </div>
         </section>
 
-        <!-- Group Mentions Section -->
-        <section id="target-groups">
+            <!-- Group Mentions Section -->
+            <section id="target-groups">
+                <div class="box">
+                    <h2>Group Mentions</h2>
+                    <p>Identify mentions of specific groups. Both direct and implied mentions should be annotated.</p>
+                    <p>The groups are as follows:</p>
+            
+                    <!-- Grid layout for group mentions -->
+                    <div class="grid-container group-grid">
+                        <!-- Ethnicity Card -->
+                        <div class="group-card">
+                            <h3><span class="highlight">Ethnicity</span></h3>
+                            <p>Mentions of ethnic groups such as Latino or Black in a neutral way, focusing on the designation without introducing any negative implications.</p>
+                            <div class="example-overlay"> <strong><strong>Example:</strong></strong> "The community center serves a diverse population including <span class="highlight">Latinos</span> and <span class="highlight">Blacks</span>."</div>
+                        </div>
+            
+                        <!-- Religion Card -->
+                        <div class="group-card">
+                            <h3><span class="highlight">Religion</span></h3>
+                            <p>References to religions such as Judaism or Christianity that merely identify the group without derogatory context.</p>
+                            <div class="example-overlay"><strong>Example:</strong> "The charity event was attended by <span class="highlight">Jewish</span> and <span class="highlight">Christian</span> community leaders."</div>
+                        </div>
+            
+                        <!-- Gender Card -->
+                        <div class="group-card">
+                            <h3><span class="highlight">Gender</span></h3>
+                            <p>Mentions of gender where the reference is purely descriptive and devoid of any judgment.</p>
+                            <div class="example-overlay"><strong>Example:</strong> "The survey included participants of various genders, including <span class="highlight">male</span>, <span class="highlight">female</span>, and <span class="highlight">non-binary</span>."</div>
+                        </div>
+            
+                        <!-- Sexual Orientation Card -->
+                        <div class="group-card">
+                            <h3><span class="highlight">Sexual Orientation</span></h3>
+                            <p>Mentions of sexual orientation that state this characteristic without negative connotations.</p>
+                            <div class="example-overlay"><strong>Example:</strong> "The support group welcomes members who identify as <span class="highlight">gay</span>, <span class="highlight">straight</span>, or <span class="highlight">bisexual</span>."</div>
+                        </div>
+            
+                        <!-- Disability Card -->
+                        <div class="group-card">
+                            <h3><span class="highlight">Disability</span></h3>
+                            <p>References to disabilities in a factual manner, ensuring the mention is respectful and non-pejorative.</p>
+                            <div class="example-overlay"><strong>Example:</strong> "Facilities have been updated to accommodate individuals with <span class="highlight">physical disabilities</span>."</div>
+                        </div>
+            
+                        <!-- Working Class Card -->
+                        <div class="group-card">
+                            <h3><span class="highlight">Working Class</span></h3>
+                            <p>Mentions of socio-economic groups classified under the term 'working class' in a neutral way.</p>
+                            <div class="example-overlay"><strong>Example:</strong> "The union meeting was primarily attended by individuals from the <span class="highlight">working class</span>, discussing their rights and future."</div>
+                        </div>
+            
+                        <!-- Ideological Group Card -->
+                        <div class="group-card">
+                            <h3><span class="highlight">Ideological Group</span></h3>
+                            <p>References to political or ideological groups without portraying them in a derogatory context.</p>
+                            <div class="example-overlay"><strong>Example:</strong> "The debate featured speakers from diverse ideological backgrounds, including <span class="highlight">communists</span>, <span class="highlight">nazis</span>, and <span class="highlight">fascists</span>."</div>
+                        </div>
+            
+                        <!-- Intersectional Card -->
+                        <div class="group-card">
+                            <h3><span class="highlight">Intersectional</span></h3>
+                            <p>Instances where multiple group identities are mentioned together in a non-offensive manner.</p>
+                            <div class="example-overlay"><strong>Example:</strong> "The workshop highlighted issues faced by <span class="highlight">Black women</span> in tech industries."</div>
+                        </div>
+                    </div>
+                </div>
+            </section>            
+    
+            <!-- Offensive Denominations Section -->
+            <section id="offensive-denomination">
+                <div class="box">
+                    <h2>Offensive Denominations</h2>
+                    <p>Annotate any slurs, derogatory terms, or offensive names used to describe individuals or groups.</p>
+            
+                    <!-- Grid layout for offensive denomination categories -->
+                    <div class="grid-container group-grid">
+                        <!-- Ethnicity Card -->
+                        <div class="group-card">
+                            <h3><span class="highlight">Ethnicity</span></h3>
+                            <p>Terms that derogate ethnic backgrounds through negative stereotypes or slurs.</p>
+                            <div class="example-overlay"><strong>Example:</strong> "The term <span class="highlight">nigger</span> is an offensive denomination towards Black people."</div>
+                        
+                        </div>
+            
+                        <!-- Religion Card -->
+                        <div class="group-card">
+                            <h3><span class="highlight">Religion</span></h3>
+                            <p>Terms used pejoratively to describe religious affiliations.</p>
+                            <div class="example-overlay"><strong>Example:</strong> "Using <span class="highlight">zealot</span> pejoratively can derogate an individual's religious fervor."</div>
+                        
+                        </div>
+            
+                        <!-- Gender Card -->
+                        <div class="group-card">
+                            <h3><span class="highlight">Gender</span></h3>
+                            <p>Derogatory terms that malign or stereotype gender identities.</p>
+                            <div class="example-overlay"><strong>Example:</strong> "Calling a woman <span class="highlight">hysterical woman</span> often carries sexist connotations"</div>
+                        
+                        </div>
+            
+                        <!-- Sexual Orientation Card -->
+                        <div class="group-card">
+                            <h3><span class="highlight">Sexual Orientation</span></h3>
+                            <p>Slurs that negatively target individuals based on their sexual orientation.</p>
+                            <div class="example-overlay"><strong>Example:</strong> "The slur <span class="highlight">dyke</span> has been historically used to insult lesbian women."</div>
+                        
+                        </div>
+            
+                        <!-- Disability Card -->
+                        <div class="group-card">
+                            <h3><span class="highlight">Disability</span></h3>
+                            <p>Terms that derogatively refer to someone's physical or mental disabilities.</p>
+                            <div class="example-overlay"><strong>Example:</strong> "Using <span class="highlight">cripple</span> as an insult is highly disrespectful and offensive."</div>
+                        </div>
+            
+                        <!-- Working Class Card -->
+                        <div class="group-card">
+                            <h3><span class="highlight">Working Class</span></h3>
+                            <p>Derogatory terms that demean socioeconomic status or class background.</p>
+                            <div class="example-overlay"><strong>Example:</strong> "Calling someone <span class="highlight">trailer trash</span> is an offensive denomination that stereotypes individuals from lower economic classes."</div>
+                        </div>
+            
+                        <!-- Ideological Group Card -->
+                        <div class="group-card">
+                            <h3><span class="highlight">Ideological Group</span></h3>
+                            <p>Terms used pejoratively to describe political or ideological groups.</p>
+                            <div class="example-overlay"><strong>Example:</strong> "Terms like <span class="highlight">commie</span> for communists or <span class="highlight">fascist</span> used inappropriately can derogate individuals based on their political beliefs."</div>
+                        </div>
+            
+                        <!-- Intersectional Card -->
+                        <div class="group-card">
+                            <h3><span class="highlight">Intersectional</span></h3>
+                            <p>Derogatory terms that target multiple identity factors simultaneously.</p>
+                            <div class="example-overlay"><strong>Example:</strong> "Using <span class="highlight">welfare queen</span> can be an offensive denomination that combines stereotypes of race, gender, and economic status."</div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+    
+            <!-- Intent Section -->
+            <section id="intent">
+                <div class="box">
+                    <h2>Hate Speech Intent</h2>
+                    <p>Evaluate the hate speech intent behind the statement:</p>
+            
+                    <!-- Grid layout for hate speech intent categories -->
+                    <div class="grid-container group-grid">
+                        <!-- Dehumanization or Comparison Card -->
+                        <div class="group-card">
+                            <h3><span class="highlight">Dehumanization or Comparison</span></h3>
+                            <p>Content that likens individuals or groups to non-human entities, thereby stripping them of humanity.</p>
+                            <div class="example-overlay"><strong>Example:</strong> "Immigrants <span class="highlight">are parasites</span>."</div>
+                        </div>
+            
+                        <!-- Threatening Language Card -->
+                        <div class="group-card">
+                            <h3><span class="highlight">Threatening Language</span></h3>
+                            <p>Statements that threaten or imply violence towards specific groups.</p>
+                            <div class="example-overlay"><strong>Example:</strong> "Women <span class="highlight">should be shot</span>. Agree!."</div>
+                        
+                        </div>
+            
+                        <!-- Derogation Card -->
+                        <div class="group-card">
+                            <h3><span class="highlight">Derogation</span></h3>
+                            <p>Explicit language that demeans, demonizes, or insults groups based on inherent traits.</p>
+                            <div class="example-overlay"><strong>Example:</strong> "Truly, I have been to Poland and there is nothing to see there. <span class="highlight">Polish people are so nasty</span> as well"</div>            
+                        </div>
+            
+                        <!-- Animosity Card -->
+                        <div class="group-card">
+                            <h3><span class="highlight">Animosity</span></h3>
+                            <p>Subtle or covert expressions of hostility that may not be overtly aggressive but still convey prejudice.</p>
+                            <div class="example-overlay"><strong>Example:</strong> "I <span class="highlight">don't want to be close to a breastfeeding woman</span>."</div>
+                        
+                        </div>
+            
+                        <!-- Hate Crime Card -->
+                        <div class="group-card">
+                            <h3><span class="highlight">Hate Crime</span></h3>
+                            <p>Endorsements or justifications of hate crimes and hateful ideologies.</p>
+                            <div class="example-overlay"><strong>Example:</strong> " <span class="highlight">Hitler was right all along</span>. We are witnessing this at home everyday."</div>
+                        
+                        </div>
+                    </div>
+                </div>
+            </section>            
+    
+            <!-- Offensive Words Section -->
+            <section id="offensive-words">
+                <div class="box">
+                    <h2>Offensive Words</h2>
+                    <p>
+                        Tag offensive words, including insults, threats, or calls for violence.
+                    </p>
+                    
+                    <!-- List of offensive word examples -->
+                    <ul class="offensive-word-list">
+                        <li>"You're such an <span class="highlight-offensive">idiot</span>!"</li>
+                        <li>"I'll <span class="highlight-offensive">kill</span> you if you come near me."</li>
+                        <li>"That guy is a complete <span class="highlight-offensive">moron</span>."</li>
+                        <li>"Someone should <span class="highlight-offensive">punch</span> him in the face."</li>
+                        <li>"Go back to where you came from, <span class="highlight-offensive">slur</span>."</li>
+                        <li>"You're nothing but a <span class="highlight-offensive">loser</span>."</li>
+                        <li>"I hope you <span class="highlight-offensive">die</span> in a fire."</li>
+                    </ul>
+
+                </div>
+            </section>
+
+            <!-- Examples Section -->
+        <section id="examples">
             <div class="box">
-                <h2>Group Mentions</h2>
-                <p>
-                    Identify mentions of specific groups (e.g., races, ethnicities, religions). Both direct and implied mentions should be annotated.
-                </p>
+                <h2>Examples of Hate Speech Annotations</h2>
+                <p>Explore various examples of hate speech annotations and how they can be tagged based on different categories.</p>
+
+                <!-- Example of Offensive Words -->
+                <div class="box">
+                    <h3>Example 1 - Offensive Denominations</h3>
+                    <p>
+                        Sentence: "You're such a <span class="highlight-offensive">moron</span>! <br>
+                        Annotation: The word "<span class="highlight-offensive">moron</span>" is tagged as an offensive word.
+                    </p>
+                </div>
+
+                <!-- Example of Hate Speech Intent -->
+                <div class="box">
+                    <h3>Example 2 - Hate Speech Intent</h3>
+                    <p>
+                        Sentence: "All <span class="highlight">immigrants</span> should be deported." <br>
+                        Annotation: The phrase "All immigrants" is tagged under hate speech intent for "dehumanization."
+                    </p>
+                </div>
+
+                <!-- Example of Group Mentions -->
+                <div class="box">
+                    <h3>Example 3 - Group Mentions</h3>
+                    <p>
+                        Sentence: "The support group is open to <span class="highlight">gay</span>, <span class="highlight">straight</span>, and <span class="highlight">bisexual</span> individuals." <br>
+                        Annotation: The words "gay," "straight," and "bisexual" are tagged as group mentions.
+                    </p>
+                </div>
             </div>
         </section>
 
-        <!-- Offensive Denominations Section -->
-        <section id="offensive-denomination">
-            <div class="box">
-                <h2>Offensive Denominations</h2>
-                <p>
-                    Annotate any slurs, derogatory terms, or offensive names used to describe individuals or groups.
-                </p>
-            </div>
-        </section>
-
-        <!-- Intent Section -->
-        <section id="intent">
-            <div class="box">
-                <h2>Hate Intent</h2>
-                <p>
-                    Evaluate the hate speech intent behind the statement. Possible intents include derogation, animosity, hate crimes, threatening language, and comparison.
-                </p>
-            </div>
-        </section>
-
-        <!-- Offensive Words Section -->
-        <section id="offensive-words">
-            <div class="box">
-                <h2>Offensive Words</h2>
-                <p>
-                    Tag offensive words, including insults, threats, or calls for violence.
-                </p>
-            </div>
-        </section>
     </main>
 
     <script>
