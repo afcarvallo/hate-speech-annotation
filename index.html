@@ -267,6 +267,34 @@
             border-radius: 4px;
         }
 
+        .hate-annotation {
+  background-color: var(--bg-color, #FFCCCC); /* Dynamically changeable background color */
+  color: black; /* Text color */
+  position: relative; /* Necessary for absolute positioning of the label */
+  display: inline-block; /* Maintains inline flow while allowing width control */
+  line-height: 1.5; /* Enhances line height for visibility */
+}
+
+.hate-annotation::after {
+  content: attr(data-label); /* Dynamic text from data-label attribute */
+  color: white; /* Label text color */
+  font-size: 0.7em; /* Smaller font size for the label */
+  position: absolute; /* Absolute positioning relative to the parent */
+  left: 50%; /* Horizontal centering start point */
+  transform: translateX(-50%); /* Shifts the label back by half its own width to center it */
+  top: -25px; /* Vertical positioning above the text */
+  padding: 2px 8px; /* Padding around the label */
+  background: #888888; /* Grey background for the label */
+  border-radius: 3px; /* Rounded corners for aesthetic */
+  white-space: nowrap; /* Ensures label text stays on one line */
+  visibility: visible; /* Always visible */
+  opacity: 1;
+  box-sizing: border-box; /* Includes padding in width calculations */
+  overflow: visible; /* Ensures label is not clipped */
+  display: block; /* Block display to facilitate width calculation */
+  min-width: 50px; /* Minimum width for readability */
+}
+
     </style>
 
 </head>
@@ -296,7 +324,7 @@
             <p> <span class="highlight">Hate speech</span> is any form of expression that incites hatred or violence against a group based on characteristics like <span class="highlight">ethnicity</span>, <span class="highlight">disability </span> , <span class="highlight">religion</span>, <span class="highlight">gender</span>, <span class="highlight">working class</span> , <span class="highlight">idelogical group</span> , or <span class="highlight">sexual orientation</span>. </p>
             <p> It can be <span class="highlight">explicit</span> (direct insults or threats) or <span class="highlight">implicit</span> (coded language or stereotypes). </p>
             <p> This project aims to create the first <span class="highlight">token-level</span> annotated corpus identifying instances of hate speech focused on specific groups.</p>
-            <p> The dataset generated from this guide will be used for enhancing <span class="highlight">Named Entity Recognition (NER)</span> models for detecting <span class="highlight">hate speech</span>, extending beyond traditional detection methods annotating <span class="highlight">group mentions</span> , <span class="highlight">offensive denominations</span>, <span class="highlight-offensive">offensive words</span> and <span class="highlight">hate speech intent</span>.</p>
+            <p> The dataset generated from this guide will be used for enhancing <span class="highlight">Named Entity Recognition (NER)</span> models for detecting <span class="highlight">hate speech</span>, extending beyond traditional detection methods annotating <span class="highlight">group mentions</span> , <span class="highlight">offensive denominations</span>, <span class="hate-annotation" data-label="Offensive Words" style="--bg-color: #FFCCCC">offensive words</span> and <span class="highlight">hate speech intent</span>.</p>
             <p> This <span class="highlight">token-level</span> annotation approach provides <span class="highlight">deeper insights</span> into the context and specific targets of <span class="highlight">hate speech</span>. </p>
             <p> Finally, the dataset and the resulting <span class="highlight">NER model</span> will increase <span class="highlight">explainability</span>, helping users understand the detailed <span class="highlight">decision-making</span> process behind <span class="highlight">content moderation</span>.</p>
             <br>
@@ -309,7 +337,7 @@
             <img src="images/curation_process.png" style="width: 50%;">
             </div>
 
-            <li><strong>LLM Pre-annotation:</strong> Data is pre-processed using a Language Model (LLM) to <span class="highlight-offensive">highlight potential hate speech</span> in a text.<br></li> 
+            <li><strong>LLM Pre-annotation:</strong> Data is pre-processed using a Language Model (LLM) to <span class="hate-annotation" data-label="Offensive Words" style="--bg-color: #FFCCCC">highlight potential hate speech</span> in a text.<br></li> 
             <li> <strong>Data curation:</strong> Your role will consist of reviewing <span class="highlight">text span annotations</span> made by the LLM.<br> </li>
             
             <br>
@@ -574,19 +602,15 @@
                     <h2>Offensive Words</h2>
                     <p>
                         Tag offensive words, including insults, threats, or calls for violence.
-                    </p>
+                    </p>  
                     
                     <!-- List of offensive word examples -->
                     <ul class="offensive-word-list">
-                        <li>"You're such an <span class="highlight-offensive">idiot</span>!"</li>
-                        <li>"I'll <span class="highlight-offensive">kill</span> you if you come near me."</li>
-                        <li>"That guy is a complete <span class="highlight-offensive">moron</span>."</li>
-                        <li>"Someone should <span class="highlight-offensive">punch</span> him in the face."</li>
-                        <li>"Go back to where you came from, <span class="highlight-offensive">slur</span>."</li>
-                        <li>"You're nothing but a <span class="highlight-offensive">loser</span>."</li>
-                        <li>"I hope you <span class="highlight-offensive">die</span> in a fire."</li>
+                        <li>"You're such an <span class="hate-annotation" data-label="Offensive Words" style="--bg-color: #FFCCCC">idiot</span>"</li> <br>
+                        <li>"That guy is a complete <span class="hate-annotation" data-label="Offensive Words" style="--bg-color: #FFCCCC">moron</span>."</li> <br> 
+                        <li>"Go back to where you came from, <span class="hate-annotation" data-label="Offensive Words" style="--bg-color: #FFCCCC">slur</span>."</li> <br> 
+                        <li>"You're nothing but a <span class="hate-annotation" data-label="Offensive Words" style="--bg-color: #FFCCCC">loser</span>."</li> <br> 
                     </ul>
-
                 </div>
             </section>
 
@@ -600,8 +624,8 @@
                 <div class="box">
                     <h3>Example 1 - Offensive Denominations</h3>
                     <p>
-                        Sentence: "You're such a <span class="highlight-offensive">moron</span>! <br>
-                        Annotation: The word "<span class="highlight-offensive">moron</span>" is tagged as an offensive word.
+                        Sentence: "You're such a <span class="hate-annotation" data-label="Offensive Words" style="--bg-color: #FFCCCC">moron</span>! <br>
+                        Annotation: The word "<span class="hate-annotation" data-label="Offensive Words" style="--bg-color: #FFCCCC">moron</span>" is tagged as an offensive word.
                     </p>
                 </div>
 
