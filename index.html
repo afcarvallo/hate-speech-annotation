@@ -268,32 +268,34 @@
         }
 
         .hate-annotation {
-  background-color: var(--bg-color, #FFCCCC); /* Dynamically changeable background color */
-  color: black; /* Text color */
-  position: relative; /* Necessary for absolute positioning of the label */
-  display: inline-block; /* Maintains inline flow while allowing width control */
-  line-height: 1.5; /* Enhances line height for visibility */
+    position: relative;
+    display: inline-block;
+    padding: 2px 4px;
+    margin: 0 2px;
+    border-radius: 3px;
+    font-weight: bold;
 }
 
 .hate-annotation::after {
-  content: attr(data-label); /* Dynamic text from data-label attribute */
-  color: white; /* Label text color */
-  font-size: 0.7em; /* Smaller font size for the label */
-  position: absolute; /* Absolute positioning relative to the parent */
-  left: 50%; /* Horizontal centering start point */
-  transform: translateX(-50%); /* Shifts the label back by half its own width to center it */
-  top: -25px; /* Vertical positioning above the text */
-  padding: 2px 8px; /* Padding around the label */
-  background: #888888; /* Grey background for the label */
-  border-radius: 3px; /* Rounded corners for aesthetic */
-  white-space: nowrap; /* Ensures label text stays on one line */
-  visibility: visible; /* Always visible */
-  opacity: 1;
-  box-sizing: border-box; /* Includes padding in width calculations */
-  overflow: visible; /* Ensures label is not clipped */
-  display: block; /* Block display to facilitate width calculation */
-  min-width: 50px; /* Minimum width for readability */
+    content: attr(data-label);
+    position: absolute;
+    top: -20px; /* Adjust this value to move the label up or down */
+    left: 50%;
+    transform: translateX(-50%);
+    background-color: #888888;
+    color: white;
+    font-size: 10px;
+    padding: 2px 4px;
+    border-radius: 3px;
+    white-space: nowrap;
+    opacity: 0;
+    transition: opacity 0.3s ease;
 }
+
+.hate-annotation:hover::after {
+    opacity: 1;
+}
+
 
 /* Container for the entire example section */
 .example-section {
@@ -335,7 +337,108 @@
   padding: 0 5px;
 }
 
+.example-buttons-container {
+    padding: 0 20px;
+    margin-bottom: 20px;
+}
 
+.example-buttons {
+    display: flex;
+    justify-content: center;
+    flex-wrap: wrap;
+    gap: 10px;
+}
+
+.example-buttons button {
+    background-color: #ffffff;
+    color: #333333;
+    border: 1px solid #e0e0e0;
+    padding: 10px 15px;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    font-weight: 500;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    flex: 1 1 auto;
+    max-width: calc(20% - 10px);
+    min-width: 150px;
+}
+
+.example-buttons button:hover {
+    background-color: #f8f8f8;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+.example-buttons button:focus {
+    outline: none;
+    box-shadow: 0 0 0 2px rgba(0, 102, 255, 0.5);
+}
+
+.back-to-top-container {
+    display: flex;
+    justify-content: center;
+    margin-top: 20px;
+}
+
+.back-to-top {
+    background-color: #ffffff;
+    color: #333333;
+    border: 1px solid #e0e0e0;
+    padding: 10px 20px;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    font-weight: 500;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+.back-to-top:hover {
+    background-color: #f8f8f8;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+@media (max-width: 768px) {
+    .example-buttons {
+        flex-direction: column;
+    }
+    .example-buttons button {
+        max-width: 100%;
+    }
+}
+    #back-to-top {
+        display: block;
+        margin: 20px auto;
+        background-color: var(--primary-blue);
+        color: white;
+        border: none;
+        padding: 10px 20px;
+        border-radius: 5px;
+        cursor: pointer;
+        transition: background-color 0.3s;
+    }
+    #back-to-top:hover {
+        background-color: #0052cc;
+    }
+    .example-box {
+        padding-top: 80px; /* Adjust this value to ensure enough space at the top */
+        margin-top: -80px; /* Negative margin to offset the padding */
+    }
+
+    .back-to-top {
+    display: block;
+    margin: 20px auto;
+    background-color: var(--primary-blue);
+    color: white;
+    border: none;
+    padding: 10px 20px;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background-color 0.3s;
+}
+
+.back-to-top:hover {
+    background-color: #0052cc;
+}
 
     </style>
 
@@ -404,6 +507,8 @@
                 <li> <strong>Hate Speech Intent:</strong> Evaluate the intent behind statements, including derogation, threats , hatecrime, comparison and animosity.</li>
                 <li> <strong>Offensive Words:</strong> Tag offensive words, including insults, threats, or calls for violence.</li>
             </ul>
+
+            You can access further definitions and detailed examples for each token-level annotation group in the navigation menu above. This will guide you through the various categories, including <strong>General Rules</strong>, <strong>Group Mentions</strong>, <strong>Offensive Denominations</strong>, <strong>Hate Speech Intent</strong>, and <strong>Offensive Words</strong> to assist you in understanding and applying the annotation guidelines effectively.
             
         </section>
 
@@ -602,7 +707,7 @@
                             <h3><span class="highlight">Dehumanization or Comparison</span></h3>
                             <p>Content that likens individuals or groups to non-human entities, thereby stripping them of humanity.</p>
                             <div class="example-overlay"><strong>Example:</strong> "Immigrants <span class="highlight">are parasites</span>."</div>
-                        </div>
+                    </div>
             
                         <!-- Threatening Language Card -->
                         <div class="group-card">
@@ -646,63 +751,184 @@
                         Tag offensive words, including insults, threats, or calls for violence.
                     </p>  
                     
-                    <!-- List of offensive word examples -->
-                    <ul class="offensive-word-list">
-                        <li>"You're such an <span class="hate-annotation" data-label="Offensive Words" style="--bg-color: #FFCCCC">idiot</span>"</li> <br>
-                        <li>"That guy is a complete <span class="hate-annotation" data-label="Offensive Words" style="--bg-color: #FFCCCC">moron</span>."</li> <br> 
-                        <li>"Go back to where you came from, <span class="hate-annotation" data-label="Offensive Words" style="--bg-color: #FFCCCC">slur</span>."</li> <br> 
-                        <li>"You're nothing but a <span class="hate-annotation" data-label="Offensive Words" style="--bg-color: #FFCCCC">loser</span>."</li> <br> 
-                    </ul>
+                    <div class="grid-container group-grid">
+                    
+                        <div class="group-card">
+                            "You're such an <span class="highlight-offensive">idiot</span>"
+                            <div class="example-overlay">Offensive words reasoning..."</div>
+                        </div>
+            
+                        <div class="group-card">
+                            "That guy is a complete <span class="highlight-offensive">moron</span>."
+                        </div>
+            
+                        <div class="group-card">
+                            "Go back to where you came from, <span class="highlight-offensive">slur</span>."
+                        </div>
+            
+                        <div class="group-card">
+                            "You're nothing but a <span class="highlight-offensive">loser</span>."
+                        </div>
+
+                        <div class="group-card">
+                            "What a <span class="highlight-offensive">pathetic</span> excuse for a human being."
+                        </div>
+            
+                        <div class="group-card">
+                            "You're a <span class="highlight-offensive">worthless</span> piece of trash."
+                        </div>
+            
+                        <div class="group-card">
+                            "Everyone knows you're a <span class="highlight-offensive">failure</span>."
+                        </div>
+            
+                        <div class="group-card">
+                            "You're a walking <span class="highlight-offensive">disaster</span>."
+                        </div>
+            
+                        <div class="group-card">
+                            "They are nothing but a bunch of <span class="highlight-offensive">scumbags</span>."
+                        </div>
+            
+                        <div class="group-card">
+                            "Why don't you just <span class="highlight-offensive">shut up</span> and disappear?"
+                        </div>
+            
+                        <div class="group-card">
+                            "You're a <span class="highlight-offensive">coward</span> and always will be."
+                        </div>
+            
+                        <div class="group-card">
+                            "You're a <span class="highlight-offensive">nobody</span>, no one cares about you."
+                        </div>
+            
+                    </div>
                 </div>
             </section>
 
             <!-- Examples Section -->
-        <section id="examples">
-            <h1>General Rules</h1> <br> 
-            <div class="example-section">
-                <div class="correct-examples"> <br> 
-                  <h3>Correct Examples</h3> <br> 
-                  <ul>
-                    <li>"You're such a <span class="hate-annotation" data-label="Compliment" style="--bg-color: #CCFFCC">genius</span>!"</li> <br> <br> 
-                    <li>"This idea is <span class="hate-annotation" data-label="Positive Words" style="--bg-color: #CCFFCC">amazing</span>!"</li> <br>  
-                  </ul>
+            <section id="examples">
+                <h2>Examples</h2> 
+                <br> 
+                
+                <div class="example-buttons-container">
+                    <div class="example-buttons">
+                        <button onclick="scrollToExampleSection('general-rules-examples')">📋 General Rules</button>
+                        <button onclick="scrollToExampleSection('group-mention-examples')">👥 Group Mention</button>
+                        <button onclick="scrollToExampleSection('offensive-denomination-examples')">🚫 Offensive Denomination</button>
+                        <button onclick="scrollToExampleSection('hate-speech-intent-examples')">💢 Hate Speech Intent</button>
+                        <button onclick="scrollToExampleSection('nested-entities-examples')">🎭 Nested Entities</button>
+                    </div>
                 </div>
                 
-                <div class="wrong-examples">
-                  <h3>Wrong Examples</h3> <br> 
-                  <ul>
-                    <li>"You're such an <span class="hate-annotation" data-label="Offensive Words" style="--bg-color: #FFCCCC">idiot</span>!"</li> <br> <br> 
-                    <li>"This plan is <span class="hate-annotation" data-label="Negative Words" style="--bg-color: #FFCCCC">terrible</span>!"</li> <br>
-                  </ul>
+            
+                <div id="general-rules-examples" class="box example-box">
+                    <h3>General Rules</h3>
+                    <div class="example-section">
+                        <div class="correct-examples">
+                            <h3>Correct Examples</h3>
+                            <ul>
+                                <li>"You're such a <span class="hate-annotation" data-label="Compliment" style="--bg-color: #CCFFCC">genius</span>!"</li>
+                                <li>"This idea is <span class="hate-annotation" data-label="Positive Words" style="--bg-color: #CCFFCC">amazing</span>!"</li>
+                            </ul>
+                        </div>
+                        <div class="wrong-examples">
+                            <h3>Wrong Examples</h3>
+                            <ul>
+                                <li>"You're such an <span class="hate-annotation" data-label="Offensive Words" style="--bg-color: #FFCCCC">idiot</span>!"</li>
+                                <li>"This plan is <span class="hate-annotation" data-label="Negative Words" style="--bg-color: #FFCCCC">terrible</span>!"</li>
+                            </ul>
+                        </div>
+                    </div>
+                    <button onclick="scrollToTop()" class="back-to-top">⬆️ Back to Top</button>
                 </div>
-              </div>
-              <br> 
-        
-              <h1>Target Groups</h1> <br> 
-            <div class="example-section">
-                <div class="correct-examples">
-                  <h3>Correct Examples</h3> <br> 
-                  <ul>
-                    <li>"You're such a <span class="hate-annotation" data-label="Compliment" style="--bg-color: #CCFFCC">genius</span>!"</li> <br> <br> 
-                    <li>"This idea is <span class="hate-annotation" data-label="Positive Words" style="--bg-color: #CCFFCC">amazing</span>!"</li> <br> <br> 
-                  </ul>
+            
+                <div id="group-mention-examples" class="box example-box">
+                    <h3>Group Mention</h3>
+                    <div class="example-section">
+                        <div class="correct-examples">
+                            <h3>Correct Examples</h3>
+                            <ul>
+                                <li>"The community center serves a diverse population including <span class="hate-annotation" data-label="Group Mention" style="--bg-color: #CCFFCC">Latinos</span> and <span class="hate-annotation" data-label="Group Mention" style="--bg-color: #CCFFCC">Blacks</span>."</li>
+                                <li>"The charity event was attended by <span class="hate-annotation" data-label="Group Mention" style="--bg-color: #CCFFCC">Jewish</span> and <span class="hate-annotation" data-label="Group Mention" style="--bg-color: #CCFFCC">Christian</span> community leaders."</li>
+                            </ul>
+                        </div>
+                        <div class="wrong-examples">
+                            <h3>Wrong Examples</h3>
+                            <ul>
+                                <li>"Those <span class="hate-annotation" data-label="Offensive Group Mention" style="--bg-color: #FFCCCC">illegals</span> are taking our jobs!"</li>
+                                <li>"All <span class="hate-annotation" data-label="Stereotyping" style="--bg-color: #FFCCCC">Muslims</span> are terrorists."</li>
+                            </ul>
+                        </div>
+                    </div>
+                    <button onclick="scrollToTop()" class="back-to-top">⬆️ Back to Top</button>
+                </div>
+            
+                <div id="offensive-denomination-examples" class="box example-box">
+                    <h3>Offensive Denomination</h3>
+                    <div class="example-section">
+                        <div class="correct-examples">
+                            <h3>Correct Examples</h3>
+                            "We should respect all individuals regardless of their background."
+                            "Let's promote inclusive language in our community."
+                            
+                        </div>
+                        <div class="wrong-examples">
+                            <h3>Wrong Examples</h3>
+                            <ul>
+                                <li>"Those <span class="hate-annotation" data-label="Offensive Denomination" style="--bg-color: #FFCCCC">retards</span> shouldn't be allowed in public."</li>
+                                <li>"Go back to where you came from, you <span class="hate-annotation" data-label="Racial Slur" style="--bg-color: #FFCCCC">[redacted]</span>."</li>
+                            </ul>
+                        </div>
+                    </div>
+                    <button onclick="scrollToTop()" class="back-to-top">⬆️ Back to Top</button>
+                </div>
+            
+                <div id="hate-speech-intent-examples" class="box example-box">
+                    <h3>Hate Speech Intent</h3>
+                    <div class="example-section">
+                        <div class="correct-examples">
+                            <h3>Correct Examples</h3>
+                            <ul>
+                                <li>"We should <span class="hate-annotation" data-label="Positive Intent" style="--bg-color: #CCFFCC">promote equality</span> for all."</li>
+                                <li>"Let's <span class="hate-annotation" data-label="Inclusive Language" style="--bg-color: #CCFFCC">celebrate our differences</span>."</li>
+                            </ul>
+                        </div>
+                        <div class="wrong-examples">
+                            <h3>Wrong Examples</h3>
+                            <ul>
+                                <li>"We should <span class="hate-annotation" data-label="Hateful Intent" style="--bg-color: #FFCCCC">get rid of</span> all of them."</li>
+                                <li>"They don't deserve to <span class="hate-annotation" data-label="Discriminatory Intent" style="--bg-color: #FFCCCC">live in our country</span>."</li>
+                            </ul>
+                        </div>
+                    </div>
+                    <button onclick="scrollToTop()" class="back-to-top">⬆️ Back to Top</button>
                 </div>
                 
-                <div class="wrong-examples">
-                  <h3>Wrong Examples</h3> <br> 
-                  <ul>
-                    <li>"You're such an <span class="hate-annotation" data-label="Offensive Words" style="--bg-color: #FFCCCC">idiot</span>!"</li> <br> <br> 
-                    <li>"This plan is <span class="hate-annotation" data-label="Negative Words" style="--bg-color: #FFCCCC">terrible</span>!"</li> <br> <br> 
-                  </ul>
+                <div id="nested-entities-examples" class="box example-box">
+                    <h3>Nested Entities</h3>
+                    <div class="example-section">
+                        <div class="correct-examples">
+                            <h3>Correct Examples</h3>
+                            <p>"The image shows diverse <span class="hate-annotation" data-label="Group Mention" style="--bg-color: #CCFFCC">ethnic groups</span> working together."</p>
+                            <img src="/api/placeholder/400/200" alt="Placeholder for correct nested entities" class="example-image"/>
+                        </div>
+                        <div class="wrong-examples">
+                            <h3>Wrong Examples</h3>
+                            <p>"This meme <span class="hate-annotation" data-label="Hateful Intent" style="--bg-color: #FFCCCC">mocks</span> <span class="hate-annotation" data-label="Group Mention" style="--bg-color: #FFCCCC">immigrants</span>."</p>
+                            <img src="/api/placeholder/400/200" alt="Placeholder for incorrect nested entities" class="example-image"/>
+                       </div>
+                    </div>
+                    <button onclick="scrollToTop()" class="back-to-top">⬆️ Back to Top</button>
+                        
+                    
                 </div>
-              </div>
 
-
-        </section>
-
+            </section>
     </main>
 
     <script>
+
         function showSection(sectionId) {
             const sections = document.querySelectorAll('section');
             sections.forEach(section => {
@@ -714,6 +940,23 @@
                 selectedSection.classList.add('active');
             }
         }
+
+        function scrollToExampleSection(sectionId) {
+            const section = document.getElementById(sectionId);
+            if (section) {
+                const yOffset = -80; // Adjust this value to fine-tune the scroll position
+                const y = section.getBoundingClientRect().top + window.pageYOffset + yOffset;
+                window.scrollTo({top: y, behavior: 'smooth'});
+            }
+        }
+
+        function scrollToTop() {
+            window.scrollTo({
+                top: 0,
+                behavior: 'smooth'
+            });
+        }
+
     </script>
 </body>
 </html>
