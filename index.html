@@ -1139,9 +1139,9 @@
                             <div class="reasoning" style="display: none;">
                                 <strong>Reasoning:</strong>
                                 <ul>
-                                    <li>Both annotations are correctly nested within the same span.</li>
-                                    <li>The outer annotation encompasses the entire relevant phrase.</li>
-                                    <li>The inner annotation correctly identifies the specific entity within the larger context.</li>
+                                    <li>"Arabs" is correctly labeled as G-ETHNICITY.</li>
+                                    <li>The entire phrase "Arabs [f**] slowly like turtles" is labeled as COMPARISON.</li>
+                                    <li>This nested annotation captures both the specific group mentioned and the comparative statement about them.</li>
                                 </ul>
                             </div>
                         </div>
@@ -1153,8 +1153,9 @@
                                     <div class="reasoning" style="display: none;">
                                         <strong>Reasoning:</strong>
                                         <ul>
-                                            <li>Annotations are not properly nested, leading to loss of context.</li>
-                                            <li>The inner annotation should be contained within the outer one.</li>
+                                            <li>Only the COMPARISON label is annotated, covering the entire phrase.</li>
+                                            <li>The G-ETHNICITY label for "Arabs" is missing, losing the specific ethnic reference.</li>
+                                            <li>This annotation fails to show the nested nature of the entities.</li>
                                         </ul>
                                     </div>
                                 </div>
@@ -1163,8 +1164,9 @@
                                     <div class="reasoning" style="display: none;">
                                         <strong>Reasoning:</strong>
                                         <ul>
-                                            <li>The annotation misses important parts of the phrase that should be included.</li>
-                                            <li>The entire relevant context should be captured in the outer annotation.</li>
+                                            <li>Both G-ETHNICITY and COMPARISON labels are present, but not nested.</li>
+                                            <li>The COMPARISON label doesn't cover the entire relevant phrase.</li>
+                                            <li>This separate labeling misses the hierarchical relationship between the entities.</li>
                                         </ul>
                                     </div>
                                 </div>
@@ -1173,8 +1175,9 @@
                                     <div class="reasoning" style="display: none;">
                                         <strong>Reasoning:</strong>
                                         <ul>
-                                            <li>Annotations are incorrectly separated instead of being nested.</li>
-                                            <li>This leads to confusion and misinterpretation of the annotated text.</li>
+                                            <li>Only the G-ETHNICITY label for "Arabs" is annotated.</li>
+                                            <li>The COMPARISON label is missing entirely.</li>
+                                            <li>This annotation loses the broader context of the comparative statement about the ethnic group.</li>
                                         </ul>
                                     </div>
                                 </div>
