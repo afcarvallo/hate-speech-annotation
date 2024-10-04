@@ -896,50 +896,72 @@
                             <h4>Correct Examples</h4>
                             <ul>
                                 <li>
-                                    <p>"You're such a <span class="hate-annotation" data-label="Compliment">genius</span>!"</p>
+                                    <p>"After charlotesville do defenders know about <span class="hate-annotation" data-label="G-ETHNICITY">white people</span> ?"</p>
                                     <div class="reasoning" style="display: none;">
                                         <strong>Reasoning:</strong>
                                         <ul>
-                                            <li>The span includes only the relevant word without punctuation.</li>
-                                            <li>It captures the complete concept without extraneous words.</li>
+                                            <li>The span should include only the relevant word without punctuation or special characters.</li>
+                                            <li>The full phrase "white people" is labeled, not just "white".</li>
                                         </ul>
                                     </div>
                                 </li>
                                 <li>
-                                    <p>"The community includes many <span class="hate-annotation" data-label="Group Mention">white people</span>."</p>
+                                    <p>"ATF , it's good though but unfortunately <span class="hate-annotation" data-label="I-DISSABILITY">nacisssistic sociopaths</span> do not change"</p>
                                     <div class="reasoning" style="display: none;">
                                         <strong>Reasoning:</strong>
                                         <ul>
-                                            <li>The full phrase "white people" is labeled, not just "white".</li>
+                                            <li>The full phrase "narcisissistic sociopath" is labeled.</li>
                                             <li>This captures the complete group mention without ambiguity.</li>
                                         </ul>
                                     </div>
                                 </li>
+                                
+                                <li>
+                                    <p>"Who chose not to serve <span class="hate-annotation" data-label="I-SEXUAL ORIENT">lesbans</span> and <span class="hate-annotation" data-label="I-ETHNICITY">ngers</span> in the context of elections."</span> do not change"</p>
+                                    <div class="reasoning" style="display: none;">
+                                        <strong>Reasoning:</strong>
+                                        <ul>
+                                            <li>Words with spelling mistakes must labeled as well.</li>
+                                            <li>There can be more than one type of label in one sentence.</li>
+                                        </ul>
+                                    </div>
+                                </li>
+
                             </ul>
                         </div>
                         <div class="wrong-examples">
                             <h4>Wrong Examples</h4>
                             <ul>
                                 <li>
-                                    <p>"You're such an <span class="hate-annotation" data-label="Offensive Words">idiot!</span>"</p>
+                                    <p>"After charlotesville do defenders know about <span class="hate-annotation" data-label="G-ETHNICITY">white people ?</span>"</p>
                                     <div class="reasoning" style="display: none;">
                                         <strong>Reasoning:</strong>
                                         <ul>
-                                            <li>The exclamation mark should not be included in the span.</li>
-                                            <li>Punctuation marks are not part of the offensive word itself.</li>
+                                            <li>The question mark should not be included in the span.</li>
+                                            <li>The full phrase "white people" should be labeled, not just "white".</li>
                                         </ul>
                                     </div>
                                 </li>
                                 <li>
-                                    <p>"The community includes many <span class="hate-annotation" data-label="Group Mention">white</span> people."</p>
+                                    <p>"ATF , it's good though but unfortunately <span class="hate-annotation" data-label="I-DISSABILITY">nacisssistic</span>  sociopaths do not change"</p>
                                     <div class="reasoning" style="display: none;">
                                         <strong>Reasoning:</strong>
                                         <ul>
-                                            <li>Only "white" is labeled, which is incomplete.</li>
-                                            <li>The full phrase "white people" should be labeled for clarity.</li>
+                                            <li>Only "narcissistic" is labeled, which is incomplete.</li>
                                         </ul>
                                     </div>
                                 </li>
+                                
+                                <li>
+                                    <p>"Who chose not to serve lesbans and ngers in the context of elections."</p>
+                                    <div class="reasoning" style="display: none;">
+                                        <strong>Reasoning:</strong>
+                                        <ul>
+                                            <li>If words have spelling mistakes they should be labeled.</li>
+                                        </ul>
+                                    </div>
+                                </li>
+
                             </ul>
                         </div>
                     </div>
