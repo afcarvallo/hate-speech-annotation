@@ -273,13 +273,14 @@
     padding: 2px 4px;
     margin: 0 2px;
     border-radius: 3px;
-    font-weight: bold;
+    background-color: rgba(255, 255, 0, 0.3); /* Light yellow highlight */
+    transition: background-color 0.3s ease;
 }
 
 .hate-annotation::after {
     content: attr(data-label);
     position: absolute;
-    top: -20px; /* Adjust this value to move the label up or down */
+    top: -20px;
     left: 50%;
     transform: translateX(-50%);
     background-color: #888888;
@@ -292,10 +293,13 @@
     transition: opacity 0.3s ease;
 }
 
+.hate-annotation:hover {
+    background-color: rgba(255, 255, 0, 0.5); /* Slightly darker yellow on hover */
+}
+
 .hate-annotation:hover::after {
     opacity: 1;
 }
-
 
 /* Container for the entire example section */
 .example-section {
@@ -338,8 +342,12 @@
 }
 
 .example-buttons-container {
-    padding: 0 20px;
-    margin-bottom: 20px;
+    position: sticky;
+    top: 60px; /* Adjust this value based on your header height */
+    background-color: #ffffff;
+    z-index: 1000;
+    padding: 10px 0;
+    box-shadow: 0 2px 4px rgba(0,0,0,0.1);
 }
 
 .example-buttons {
@@ -350,23 +358,16 @@
 }
 
 .example-buttons button {
-    background-color: #ffffff;
-    color: #333333;
-    border: 1px solid #e0e0e0;
+    background-color: #f0f0f0;
+    border: none;
     padding: 10px 15px;
     border-radius: 5px;
     cursor: pointer;
-    transition: all 0.3s ease;
-    font-weight: 500;
-    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
-    flex: 1 1 auto;
-    max-width: calc(20% - 10px);
-    min-width: 150px;
+    transition: background-color 0.3s ease;
 }
 
 .example-buttons button:hover {
-    background-color: #f8f8f8;
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    background-color: #e0e0e0;
 }
 
 .example-buttons button:focus {
@@ -400,9 +401,6 @@
 @media (max-width: 768px) {
     .example-buttons {
         flex-direction: column;
-    }
-    .example-buttons button {
-        max-width: 100%;
     }
 }
     #back-to-top {
@@ -438,6 +436,74 @@
 
 .back-to-top:hover {
     background-color: #0052cc;
+}
+
+.example-section ul {
+    padding-left: 20px;
+}
+
+.example-section li {
+    margin-bottom: 20px;
+}
+
+.example-section {
+    display: flex;
+    justify-content: space-between;
+}
+
+.correct-examples, .wrong-examples {
+    width: 48%;
+}
+
+.toggle-container {
+    text-align: right;
+    margin-top: 15px;
+    margin-bottom: 10px;
+}
+
+.toggle-reasoning {
+    color: #0066FF;
+    text-decoration: none;
+    font-size: 0.9em;
+}
+
+.toggle-reasoning:hover {
+    text-decoration: underline;
+}
+
+.reasoning {
+    background-color: #f9f9f9;
+    padding: 10px;
+    border-left: 3px solid #0066FF;
+    margin-top: 10px;
+    font-size: 0.9em;
+}
+
+
+
+.toggle-container {
+    text-align: right;
+    margin-top: 15px;
+    margin-bottom: 10px;
+}
+
+.toggle-reasoning {
+    color: #0066FF;
+    text-decoration: none;
+    font-size: 0.9em;
+}
+
+.toggle-reasoning:hover {
+    text-decoration: underline;
+}
+
+.reasoning ul {
+    margin-top: 5px;
+    padding-left: 20px;
+}
+
+.reasoning li {
+    margin-bottom: 5px;
 }
 
     </style>
@@ -821,106 +887,302 @@
                     </div>
                 </div>
                 
-            
-                <div id="general-rules-examples" class="box example-box">
+                <div id="general-rules-examples" class="box example-box toggle-section">
                     <h3>General Rules</h3>
                     <div class="example-section">
                         <div class="correct-examples">
-                            <h3>Correct Examples</h3>
+                            <h4>Correct Examples</h4>
                             <ul>
-                                <li>"You're such a <span class="hate-annotation" data-label="Compliment" style="--bg-color: #CCFFCC">genius</span>!"</li>
-                                <li>"This idea is <span class="hate-annotation" data-label="Positive Words" style="--bg-color: #CCFFCC">amazing</span>!"</li>
+                                <li>
+                                    <p>"You're such a <span class="hate-annotation" data-label="Compliment">genius</span>!"</p>
+                                    <div class="reasoning" style="display: none;">
+                                        <strong>Reasoning:</strong>
+                                        <ul>
+                                            <li>The span includes only the relevant word without punctuation.</li>
+                                            <li>It captures the complete concept without extraneous words.</li>
+                                        </ul>
+                                    </div>
+                                </li>
+                                <li>
+                                    <p>"The community includes many <span class="hate-annotation" data-label="Group Mention">white people</span>."</p>
+                                    <div class="reasoning" style="display: none;">
+                                        <strong>Reasoning:</strong>
+                                        <ul>
+                                            <li>The full phrase "white people" is labeled, not just "white".</li>
+                                            <li>This captures the complete group mention without ambiguity.</li>
+                                        </ul>
+                                    </div>
+                                </li>
                             </ul>
                         </div>
                         <div class="wrong-examples">
-                            <h3>Wrong Examples</h3>
+                            <h4>Wrong Examples</h4>
                             <ul>
-                                <li>"You're such an <span class="hate-annotation" data-label="Offensive Words" style="--bg-color: #FFCCCC">idiot</span>!"</li>
-                                <li>"This plan is <span class="hate-annotation" data-label="Negative Words" style="--bg-color: #FFCCCC">terrible</span>!"</li>
+                                <li>
+                                    <p>"You're such an <span class="hate-annotation" data-label="Offensive Words">idiot!</span>"</p>
+                                    <div class="reasoning" style="display: none;">
+                                        <strong>Reasoning:</strong>
+                                        <ul>
+                                            <li>The exclamation mark should not be included in the span.</li>
+                                            <li>Punctuation marks are not part of the offensive word itself.</li>
+                                        </ul>
+                                    </div>
+                                </li>
+                                <li>
+                                    <p>"The community includes many <span class="hate-annotation" data-label="Group Mention">white</span> people."</p>
+                                    <div class="reasoning" style="display: none;">
+                                        <strong>Reasoning:</strong>
+                                        <ul>
+                                            <li>Only "white" is labeled, which is incomplete.</li>
+                                            <li>The full phrase "white people" should be labeled for clarity.</li>
+                                        </ul>
+                                    </div>
+                                </li>
                             </ul>
                         </div>
                     </div>
-                    <button onclick="scrollToTop()" class="back-to-top">⬆️ Back to Top</button>
+                    <div class="toggle-container">
+                        <a href="#" class="toggle-reasoning" onclick="toggleReasoning(this); return false;">Show reasoning</a>
+                    </div>
+                    <!-- <button onclick="scrollToTop()" class="back-to-top">⬆️ Back to Top</button> -->
                 </div>
-            
-                <div id="group-mention-examples" class="box example-box">
+
+                <div id="group-mention-examples" class="box example-box toggle-section">
                     <h3>Group Mention</h3>
                     <div class="example-section">
                         <div class="correct-examples">
                             <h3>Correct Examples</h3>
                             <ul>
-                                <li>"The community center serves a diverse population including <span class="hate-annotation" data-label="Group Mention" style="--bg-color: #CCFFCC">Latinos</span> and <span class="hate-annotation" data-label="Group Mention" style="--bg-color: #CCFFCC">Blacks</span>."</li>
-                                <li>"The charity event was attended by <span class="hate-annotation" data-label="Group Mention" style="--bg-color: #CCFFCC">Jewish</span> and <span class="hate-annotation" data-label="Group Mention" style="--bg-color: #CCFFCC">Christian</span> community leaders."</li>
+                                <li>
+                                    "The community center serves a diverse population including <span class="hate-annotation" data-label="Group Mention" style="--bg-color: #CCFFCC">Latinos</span> and <span class="hate-annotation" data-label="Group Mention" style="--bg-color: #CCFFCC">Blacks</span>."
+                                    <div class="reasoning" style="display: none;">
+                                        <strong>Reasoning:</strong>
+                                        <ul>
+                                            <li>Neutral mention of ethnic groups without negative connotations.</li>
+                                            <li>Used in the context of diversity and inclusion.</li>
+                                        </ul>
+                                    </div>
+                                </li>
+                                <li>
+                                    "The charity event was attended by <span class="hate-annotation" data-label="Group Mention" style="--bg-color: #CCFFCC">Jewish</span> and <span class="hate-annotation" data-label="Group Mention" style="--bg-color: #CCFFCC">Christian</span> community leaders."
+                                    <div class="reasoning" style="display: none;">
+                                        <strong>Reasoning:</strong>
+                                        <ul>
+                                            <li>Neutral mention of religious groups in a positive context.</li>
+                                            <li>Demonstrates cooperation between different religious communities.</li>
+                                        </ul>
+                                    </div>
+                                </li>
                             </ul>
                         </div>
                         <div class="wrong-examples">
                             <h3>Wrong Examples</h3>
                             <ul>
-                                <li>"Those <span class="hate-annotation" data-label="Offensive Group Mention" style="--bg-color: #FFCCCC">illegals</span> are taking our jobs!"</li>
-                                <li>"All <span class="hate-annotation" data-label="Stereotyping" style="--bg-color: #FFCCCC">Muslims</span> are terrorists."</li>
+                                <li>
+                                    "Those <span class="hate-annotation" data-label="Offensive Group Mention" style="--bg-color: #FFCCCC">illegals</span> are taking our jobs!"
+                                    <div class="reasoning" style="display: none;">
+                                        <strong>Reasoning:</strong>
+                                        <ul>
+                                            <li>Use of derogatory term "illegals" to refer to immigrants.</li>
+                                            <li>Perpetuates harmful stereotypes and xenophobic attitudes.</li>
+                                        </ul>
+                                    </div>
+                                </li>
+                                <li>
+                                    "All <span class="hate-annotation" data-label="Stereotyping" style="--bg-color: #FFCCCC">Muslims</span> are terrorists."
+                                    <div class="reasoning" style="display: none;">
+                                        <strong>Reasoning:</strong>
+                                        <ul>
+                                            <li>Broad generalization and negative stereotyping of an entire religious group.</li>
+                                            <li>Promotes Islamophobia and false associations with terrorism.</li>
+                                        </ul>
+                                    </div>
+                                </li>
                             </ul>
                         </div>
                     </div>
-                    <button onclick="scrollToTop()" class="back-to-top">⬆️ Back to Top</button>
+                    <div class="toggle-container">
+                        <a href="#" class="toggle-reasoning" onclick="toggleReasoning(this); return false;">Show reasoning</a>
+                    </div>
+                    <!-- <button onclick="scrollToTop()" class="back-to-top">⬆️ Back to Top</button> -->
                 </div>
-            
-                <div id="offensive-denomination-examples" class="box example-box">
+                
+                <div id="offensive-denomination-examples" class="box example-box toggle-section">
                     <h3>Offensive Denomination</h3>
                     <div class="example-section">
                         <div class="correct-examples">
                             <h3>Correct Examples</h3>
-                            "We should respect all individuals regardless of their background."
-                            "Let's promote inclusive language in our community."
-                            
+                            <ul>
+                                <li>
+                                    "We should respect all individuals regardless of their background."
+                                    <div class="reasoning" style="display: none;">
+                                        <strong>Reasoning:</strong>
+                                        <ul>
+                                            <li>Promotes inclusivity and respect for diversity.</li>
+                                            <li>Does not single out or label any specific group.</li>
+                                        </ul>
+                                    </div>
+                                </li>
+                                <li>
+                                    "Let's promote inclusive language in our community."
+                                    <div class="reasoning" style="display: none;">
+                                        <strong>Reasoning:</strong>
+                                        <ul>
+                                            <li>Encourages the use of respectful and non-discriminatory language.</li>
+                                            <li>Focuses on positive action rather than negative labeling.</li>
+                                        </ul>
+                                    </div>
+                                </li>
+                            </ul>
                         </div>
                         <div class="wrong-examples">
                             <h3>Wrong Examples</h3>
                             <ul>
-                                <li>"Those <span class="hate-annotation" data-label="Offensive Denomination" style="--bg-color: #FFCCCC">retards</span> shouldn't be allowed in public."</li>
-                                <li>"Go back to where you came from, you <span class="hate-annotation" data-label="Racial Slur" style="--bg-color: #FFCCCC">[redacted]</span>."</li>
+                                <li>
+                                    "Those <span class="hate-annotation" data-label="Offensive Denomination" style="--bg-color: #FFCCCC">retards</span> shouldn't be allowed in public."
+                                    <div class="reasoning" style="display: none;">
+                                        <strong>Reasoning:</strong>
+                                        <ul>
+                                            <li>Use of a highly offensive slur for people with intellectual disabilities.</li>
+                                            <li>Promotes discrimination and exclusion of a vulnerable group.</li>
+                                        </ul>
+                                    </div>
+                                </li>
+                                <li>
+                                    "Go back to where you came from, you <span class="hate-annotation" data-label="Racial Slur" style="--bg-color: #FFCCCC">[redacted]</span>."
+                                    <div class="reasoning" style="display: none;">
+                                        <strong>Reasoning:</strong>
+                                        <ul>
+                                            <li>Contains a racial slur, which is inherently offensive and derogatory.</li>
+                                            <li>Xenophobic sentiment expressing intolerance towards immigrants or minorities.</li>
+                                        </ul>
+                                    </div>
+                                </li>
                             </ul>
                         </div>
                     </div>
-                    <button onclick="scrollToTop()" class="back-to-top">⬆️ Back to Top</button>
+                    <div class="toggle-container">
+                        <a href="#" class="toggle-reasoning" onclick="toggleReasoning(this); return false;">Show reasoning</a>
+                    </div>
+                    <!-- <button onclick="scrollToTop()" class="back-to-top">⬆️ Back to Top</button> -->
                 </div>
-            
-                <div id="hate-speech-intent-examples" class="box example-box">
+                
+                <div id="hate-speech-intent-examples" class="box example-box toggle-section">
                     <h3>Hate Speech Intent</h3>
                     <div class="example-section">
                         <div class="correct-examples">
                             <h3>Correct Examples</h3>
                             <ul>
-                                <li>"We should <span class="hate-annotation" data-label="Positive Intent" style="--bg-color: #CCFFCC">promote equality</span> for all."</li>
-                                <li>"Let's <span class="hate-annotation" data-label="Inclusive Language" style="--bg-color: #CCFFCC">celebrate our differences</span>."</li>
+                                <li>
+                                    "We should <span class="hate-annotation" data-label="Positive Intent" style="--bg-color: #CCFFCC">promote equality</span> for all."
+                                    <div class="reasoning" style="display: none;">
+                                        <strong>Reasoning:</strong>
+                                        <ul>
+                                            <li>Expresses a positive intent to foster equality.</li>
+                                            <li>Inclusive language that doesn't single out or discriminate against any group.</li>
+                                        </ul>
+                                    </div>
+                                </li>
+                                <li>
+                                    "Let's <span class="hate-annotation" data-label="Inclusive Language" style="--bg-color: #CCFFCC">celebrate our differences</span>."
+                                    <div class="reasoning" style="display: none;">
+                                        <strong>Reasoning:</strong>
+                                        <ul>
+                                            <li>Promotes appreciation of diversity.</li>
+                                            <li>Encourages unity while acknowledging individual differences.</li>
+                                        </ul>
+                                    </div>
+                                </li>
                             </ul>
                         </div>
                         <div class="wrong-examples">
                             <h3>Wrong Examples</h3>
                             <ul>
-                                <li>"We should <span class="hate-annotation" data-label="Hateful Intent" style="--bg-color: #FFCCCC">get rid of</span> all of them."</li>
-                                <li>"They don't deserve to <span class="hate-annotation" data-label="Discriminatory Intent" style="--bg-color: #FFCCCC">live in our country</span>."</li>
+                                <li>
+                                    "We should <span class="hate-annotation" data-label="Hateful Intent" style="--bg-color: #FFCCCC">get rid of</span> all of them."
+                                    <div class="reasoning" style="display: none;">
+                                        <strong>Reasoning:</strong>
+                                        <ul>
+                                            <li>Expresses intent to harm or remove a group of people.</li>
+                                            <li>Dehumanizing language that promotes exclusion and potential violence.</li>
+                                        </ul>
+                                    </div>
+                                </li>
+                                <li>
+                                    "They don't deserve to <span class="hate-annotation" data-label="Discriminatory Intent" style="--bg-color: #FFCCCC">live in our country</span>."
+                                    <div class="reasoning" style="display: none;">
+                                        <strong>Reasoning:</strong>
+                                        <ul>
+                                            <li>Expresses discriminatory intent to exclude a group from society.</li>
+                                            <li>Implies superiority of one group over another, promoting xenophobia.</li>
+                                        </ul>
+                                    </div>
+                                </li>
                             </ul>
                         </div>
                     </div>
-                    <button onclick="scrollToTop()" class="back-to-top">⬆️ Back to Top</button>
+                    <div class="toggle-container">
+                        <a href="#" class="toggle-reasoning" onclick="toggleReasoning(this); return false;">Show reasoning</a>
+                    </div>
+                    <!-- <button onclick="scrollToTop()" class="back-to-top">⬆️ Back to Top</button> -->
                 </div>
                 
                 <div id="nested-entities-examples" class="box example-box">
                     <h3>Nested Entities</h3>
-                    <p>If there are two annotations in the same span annotate both of them</p>
+                    <p>If there are two annotations in the same span, annotate both of them nested.</p>
                     <div class="example-section">
                         <div class="correct-examples">
-                            <h3>Correct Examples</h3>
-                            <img src="images/correct_nested.png" alt="Placeholder for correct nested entities" class="example-image"/>
+                            <h4>Correct Example</h4>
+                            <img src="images/correct_nested.png" alt="Correct nested entities example" class="example-image"/>
+                            <div class="reasoning" style="display: none;">
+                                <strong>Reasoning:</strong>
+                                <ul>
+                                    <li>Both annotations are correctly nested within the same span.</li>
+                                    <li>The outer annotation encompasses the entire relevant phrase.</li>
+                                    <li>The inner annotation correctly identifies the specific entity within the larger context.</li>
+                                </ul>
+                            </div>
                         </div>
                         <div class="wrong-examples">
-                            <h3>Wrong Examples</h3>
-                            <img src="images/wrong_nested.png" alt="Placeholder for incorrect nested entities" class="example-image"/>
-                       </div>
+                            <h4>Wrong Examples</h4>
+                            <div class="wrong-examples-grid">
+                                <div class="wrong-example">
+                                    <img src="images/wrong_nested1.png" alt="Incorrect nested entities example 1" class="example-image"/>
+                                    <div class="reasoning" style="display: none;">
+                                        <strong>Reasoning:</strong>
+                                        <ul>
+                                            <li>Annotations are not properly nested, leading to loss of context.</li>
+                                            <li>The inner annotation should be contained within the outer one.</li>
+                                        </ul>
+                                    </div>
+                                </div>
+                                <div class="wrong-example">
+                                    <img src="images/wrong_nested2.png" alt="Incorrect nested entities example 2" class="example-image"/>
+                                    <div class="reasoning" style="display: none;">
+                                        <strong>Reasoning:</strong>
+                                        <ul>
+                                            <li>The annotation misses important parts of the phrase that should be included.</li>
+                                            <li>The entire relevant context should be captured in the outer annotation.</li>
+                                        </ul>
+                                    </div>
+                                </div>
+                                <div class="wrong-example">
+                                    <img src="images/wrong_nested3.png" alt="Incorrect nested entities example 3" class="example-image"/>
+                                    <div class="reasoning" style="display: none;">
+                                        <strong>Reasoning:</strong>
+                                        <ul>
+                                            <li>Annotations are incorrectly separated instead of being nested.</li>
+                                            <li>This leads to confusion and misinterpretation of the annotated text.</li>
+                                        </ul>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
                     </div>
-                    <button onclick="scrollToTop()" class="back-to-top">⬆️ Back to Top</button>
-                        
-                    
+                    <div class="toggle-container">
+                        <a href="#" id="toggle-nested-reasoning" class="toggle-reasoning" onclick="toggleNestedReasoning(); return false;">Show reasoning</a>
+                    </div>
+                    <!-- <button onclick="scrollToTop()" class="back-to-top">⬆️ Back to Top</button> -->
                 </div>
 
             </section>
@@ -941,13 +1203,15 @@
         }
 
         function scrollToExampleSection(sectionId) {
-            const section = document.getElementById(sectionId);
-            if (section) {
-                const yOffset = -80; // Adjust this value to fine-tune the scroll position
-                const y = section.getBoundingClientRect().top + window.pageYOffset + yOffset;
-                window.scrollTo({top: y, behavior: 'smooth'});
-            }
-        }
+    const section = document.getElementById(sectionId);
+    const menuHeight = document.querySelector('.example-buttons-container').offsetHeight;
+    const headerHeight = 60; // Adjust this value based on your header height
+
+    if (section) {
+        const topOffset = section.getBoundingClientRect().top + window.pageYOffset - menuHeight - headerHeight;
+        window.scrollTo({top: topOffset, behavior: 'smooth'});
+    }
+}
 
         function scrollToTop() {
             window.scrollTo({
@@ -955,6 +1219,32 @@
                 behavior: 'smooth'
             });
         }
+
+        // General function for text-based sections
+        function toggleReasoning(link) {
+    var section = link.closest('.toggle-section');
+    var reasonings = section.querySelectorAll('.reasoning');
+    var isHidden = reasonings[0].style.display === 'none';
+    
+    reasonings.forEach(function(reasoning) {
+        reasoning.style.display = isHidden ? 'block' : 'none';
+    });
+    
+    link.textContent = isHidden ? 'Hide reasoning' : 'Show reasoning';
+}
+
+// Keep the specific function for the figures section
+function toggleNestedReasoning() {
+    var reasonings = document.querySelectorAll('#nested-entities-examples .reasoning');
+    var link = document.getElementById('toggle-nested-reasoning');
+    var isHidden = reasonings[0].style.display === 'none';
+    
+    reasonings.forEach(function(reasoning) {
+        reasoning.style.display = isHidden ? 'block' : 'none';
+    });
+    
+    link.textContent = isHidden ? 'Hide reasoning' : 'Show reasoning';
+}
 
     </script>
 </body>
