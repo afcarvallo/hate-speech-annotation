@@ -882,21 +882,21 @@
                 <div class="example-buttons-container">
                     <div class="example-buttons">
                         <button onclick="scrollToExampleSection('general-rules-examples')">📋 General Rules</button>
-                        <button onclick="scrollToExampleSection('group-mention-examples')">👥 Group Mention</button>
-                        <button onclick="scrollToExampleSection('offensive-denomination-examples')">🚫 Offensive Denomination</button>
+                        <button onclick="scrollToExampleSection('group-mention-examples')">👥 Group Mention v/s 🚫 Offensive Denomination </button>
                         <button onclick="scrollToExampleSection('hate-speech-intent-examples')">💢 Hate Speech Intent</button>
                         <button onclick="scrollToExampleSection('nested-entities-examples')">🎭 Nested Entities</button>
                     </div>
                 </div>
                 
                 <div id="general-rules-examples" class="box example-box toggle-section">
-                    <h3>General Rules</h3>
+                    <h3>📋 General Rules</h3>
                     <div class="example-section">
                         <div class="correct-examples">
                             <h4>Correct Examples</h4>
                             <ul>
                                 <li>
                                     <p>"After charlotesville do defenders know about <span class="hate-annotation" data-label="G-ETHNICITY">white people</span> ?"</p>
+                                    <p>"Rashard Wright is an <span class="hate-annotation" data-label="I-ETHNICITY">antiwhite extremist</span> at #wearebschools he actively promotes"</p>
                                     <div class="reasoning" style="display: none;">
                                         <strong>Reasoning:</strong>
                                         <ul>
@@ -907,6 +907,7 @@
                                 </li>
                                 <li>
                                     <p>"ATF , it's good though but unfortunately <span class="hate-annotation" data-label="I-DISSABILITY">nacisssistic sociopaths</span> do not change"</p>
+                                    
                                     <div class="reasoning" style="display: none;">
                                         <strong>Reasoning:</strong>
                                         <ul>
@@ -934,6 +935,8 @@
                             <ul>
                                 <li>
                                     <p>"After charlotesville do defenders know about <span class="hate-annotation" data-label="G-ETHNICITY">white people ?</span>"</p>
+                                    <p>"After charlotesville do defenders know about <span class="hate-annotation" data-label="G-ETHNICITY">white</span> people ?"</p>
+                                    <p>"Rashard Wright is an <span class="hate-annotation" data-label="I-ETHNICITY">antiwhite</span> extremist at #wearebschools he actively promotes"</p>
                                     <div class="reasoning" style="display: none;">
                                         <strong>Reasoning:</strong>
                                         <ul>
@@ -972,23 +975,22 @@
                 </div>
 
                 <div id="group-mention-examples" class="box example-box toggle-section">
-                    <h3>Group Mention</h3>
+                    <h3>👥 Group Mention v/s 🚫 Offensive Denomination</h3>
                     <div class="example-section">
                         <div class="correct-examples">
                             <h3>Correct Examples</h3>
                             <ul>
-                                <li>
-                                    "The community center serves a diverse population including <span class="hate-annotation" data-label="Group Mention" style="--bg-color: #CCFFCC">Latinos</span> and <span class="hate-annotation" data-label="Group Mention" style="--bg-color: #CCFFCC">Blacks</span>."
+                                <li>"Daily reminder that <span class="hate-annotation" data-label="G-RELIGION">jews</span> were not murdered in those <span class="hate-annotation" data-label="I-RELIGION">false death camps</span>." [RELIGION] </li>
                                     <div class="reasoning" style="display: none;">
                                         <strong>Reasoning:</strong>
                                         <ul>
-                                            <li>Neutral mention of ethnic groups without negative connotations.</li>
-                                            <li>Used in the context of diversity and inclusion.</li>
+                                            <li><strong>G-RELIGION:</strong> Neutral mention of a religious group ("jews")</li>
+                                            <li><strong>I-RELIGION:</strong> Implicit attack on the group's history ("false death camps")</li>
                                         </ul>
                                     </div>
                                 </li>
                                 <li>
-                                    "The charity event was attended by <span class="hate-annotation" data-label="Group Mention" style="--bg-color: #CCFFCC">Jewish</span> and <span class="hate-annotation" data-label="Group Mention" style="--bg-color: #CCFFCC">Christian</span> community leaders."
+                                    "The charity event was attended by <span class="hate-annotation" data-label="G-RELIGION" style="--bg-color: #CCFFCC">Jews</span> and <span class="hate-annotation" data-label="Group Mention" style="--bg-color: #CCFFCC">Christian</span> community leaders."
                                     <div class="reasoning" style="display: none;">
                                         <strong>Reasoning:</strong>
                                         <ul>
@@ -1002,13 +1004,12 @@
                         <div class="wrong-examples">
                             <h3>Wrong Examples</h3>
                             <ul>
-                                <li>
-                                    "Those <span class="hate-annotation" data-label="Offensive Group Mention" style="--bg-color: #FFCCCC">illegals</span> are taking our jobs!"
+                                    <li>"Daily reminder that <span class="hate-annotation" data-label="G-RELIGION">jews</span> were not murdered in those false death camps." [RELIGION] </li>
                                     <div class="reasoning" style="display: none;">
                                         <strong>Reasoning:</strong>
                                         <ul>
-                                            <li>Use of derogatory term "illegals" to refer to immigrants.</li>
-                                            <li>Perpetuates harmful stereotypes and xenophobic attitudes.</li>
+                                            <li>G-RELIGION is correctly annotated for "jews"</li>
+                                            <li>Missing I-RELIGION annotation for "false death camps" (implicit attack)</li>
                                         </ul>
                                     </div>
                                 </li>
@@ -1031,68 +1032,9 @@
                     <!-- <button onclick="scrollToTop()" class="back-to-top">⬆️ Back to Top</button> -->
                 </div>
                 
-                <div id="offensive-denomination-examples" class="box example-box toggle-section">
-                    <h3>Offensive Denomination</h3>
-                    <div class="example-section">
-                        <div class="correct-examples">
-                            <h3>Correct Examples</h3>
-                            <ul>
-                                <li>
-                                    "We should respect all individuals regardless of their background."
-                                    <div class="reasoning" style="display: none;">
-                                        <strong>Reasoning:</strong>
-                                        <ul>
-                                            <li>Promotes inclusivity and respect for diversity.</li>
-                                            <li>Does not single out or label any specific group.</li>
-                                        </ul>
-                                    </div>
-                                </li>
-                                <li>
-                                    "Let's promote inclusive language in our community."
-                                    <div class="reasoning" style="display: none;">
-                                        <strong>Reasoning:</strong>
-                                        <ul>
-                                            <li>Encourages the use of respectful and non-discriminatory language.</li>
-                                            <li>Focuses on positive action rather than negative labeling.</li>
-                                        </ul>
-                                    </div>
-                                </li>
-                            </ul>
-                        </div>
-                        <div class="wrong-examples">
-                            <h3>Wrong Examples</h3>
-                            <ul>
-                                <li>
-                                    "Those <span class="hate-annotation" data-label="Offensive Denomination" style="--bg-color: #FFCCCC">retards</span> shouldn't be allowed in public."
-                                    <div class="reasoning" style="display: none;">
-                                        <strong>Reasoning:</strong>
-                                        <ul>
-                                            <li>Use of a highly offensive slur for people with intellectual disabilities.</li>
-                                            <li>Promotes discrimination and exclusion of a vulnerable group.</li>
-                                        </ul>
-                                    </div>
-                                </li>
-                                <li>
-                                    "Go back to where you came from, you <span class="hate-annotation" data-label="Racial Slur" style="--bg-color: #FFCCCC">[redacted]</span>."
-                                    <div class="reasoning" style="display: none;">
-                                        <strong>Reasoning:</strong>
-                                        <ul>
-                                            <li>Contains a racial slur, which is inherently offensive and derogatory.</li>
-                                            <li>Xenophobic sentiment expressing intolerance towards immigrants or minorities.</li>
-                                        </ul>
-                                    </div>
-                                </li>
-                            </ul>
-                        </div>
-                    </div>
-                    <div class="toggle-container">
-                        <a href="#" class="toggle-reasoning" onclick="toggleReasoning(this); return false;">Show reasoning</a>
-                    </div>
-                    <!-- <button onclick="scrollToTop()" class="back-to-top">⬆️ Back to Top</button> -->
-                </div>
                 
                 <div id="hate-speech-intent-examples" class="box example-box toggle-section">
-                    <h3>Hate Speech Intent</h3>
+                    <h3>💢 Hate Speech Intent</h3>
                     <div class="example-section">
                         <div class="correct-examples">
                             <h3>Correct Examples</h3>
@@ -1152,7 +1094,7 @@
                 </div>
                 
                 <div id="nested-entities-examples" class="box example-box">
-                    <h3>Nested Entities</h3>
+                    <h3>🎭 Nested Entities</h3>
                     <p>If there are two annotations in the same span, annotate both of them nested.</p>
                     <div class="example-section">
                         <div class="correct-examples">
