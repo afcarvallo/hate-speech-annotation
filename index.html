@@ -1066,7 +1066,6 @@
                         <li>Separate annotations miss the combined impact of the slurs</li>
                         <li>The phrase targets multiple groups simultaneously, qualifying as intersectional</li>
                     </ul>
-
                             </ul>
                         </div>
                     </div>
@@ -1082,53 +1081,53 @@
                     <div class="example-section">
                         <div class="correct-examples">
                             <h3>Correct Examples</h3>
-                            <ul>
-                                <li>
-                                    "We should <span class="hate-annotation" data-label="Positive Intent" style="--bg-color: #CCFFCC">promote equality</span> for all."
-                                    <div class="reasoning" style="display: none;">
-                                        <strong>Reasoning:</strong>
-                                        <ul>
-                                            <li>Expresses a positive intent to foster equality.</li>
-                                            <li>Inclusive language that doesn't single out or discriminate against any group.</li>
-                                        </ul>
-                                    </div>
-                                </li>
-                                <li>
-                                    "Let's <span class="hate-annotation" data-label="Inclusive Language" style="--bg-color: #CCFFCC">celebrate our differences</span>."
-                                    <div class="reasoning" style="display: none;">
-                                        <strong>Reasoning:</strong>
-                                        <ul>
-                                            <li>Promotes appreciation of diversity.</li>
-                                            <li>Encourages unity while acknowledging individual differences.</li>
-                                        </ul>
-                                    </div>
-                                </li>
-                            </ul>
+                            [COMPARISON]
+                            <img src="images/correct_nested.png" alt="Correct nested entities example" class="example-image"/>
+                            <div class="reasoning" style="display: none;">
+                                <strong>Reasoning:</strong>
+                                <ul>
+                                    <li>G-ETHNICITY: "Arabs" correctly labeled as a general mention of an ethnic group</li>
+                                    <li>COMPARISON: The entire phrase is properly labeled as a comparison</li>
+                                    <li>Both labels are necessary to capture the full context of the statement</li>
+                                </ul>
+                            </div>
+
+                            <br> 
+                            [THREATENING]
+                            <img src="images/threat_correct.png" alt="Correct nested entities example" class="example-image"/>
+                            <div class="reasoning" style="display: none;">
+                                <strong>Reasoning:</strong>
+                                <ul>
+                                    <li>I-GENDER: "femoids" is a derogatory term for women</li>
+                                    <li>THREATENING: The phrase implies extreme aversion, bordering on threatening behavior</li>
+                                    <li>Both labels are necessary to capture the full context of the hate speech</li>
+                                </ul>
+                            </div>
                         </div>
                         <div class="wrong-examples">
                             <h3>Wrong Examples</h3>
-                            <ul>
-                                <li>
-                                    "We should <span class="hate-annotation" data-label="Hateful Intent" style="--bg-color: #FFCCCC">get rid of</span> all of them."
-                                    <div class="reasoning" style="display: none;">
-                                        <strong>Reasoning:</strong>
-                                        <ul>
-                                            <li>Expresses intent to harm or remove a group of people.</li>
-                                            <li>Dehumanizing language that promotes exclusion and potential violence.</li>
-                                        </ul>
-                                    </div>
-                                </li>
-                                <li>
-                                    "They don't deserve to <span class="hate-annotation" data-label="Discriminatory Intent" style="--bg-color: #FFCCCC">live in our country</span>."
-                                    <div class="reasoning" style="display: none;">
-                                        <strong>Reasoning:</strong>
-                                        <ul>
-                                            <li>Expresses discriminatory intent to exclude a group from society.</li>
-                                            <li>Implies superiority of one group over another, promoting xenophobia.</li>
-                                        </ul>
-                                    </div>
-                                </li>
-                            </ul>
+
+                            [COMPARISON]
+                            <img src="images/wrong_nested1.png" class="example-image"/>
+                            <div class="reasoning" style="display: none;">
+                                <strong>Reasoning:</strong>
+                                <ul>
+                                    <li>Missing G-ETHNICITY label for "Arabs"</li>
+                                    <li>COMPARISON alone doesn't identify the specific ethnic group being mentioned</li>
+                                    <li>Fails to capture the ethnic component of the statement</li>
+                                </ul>
+                            </div>
+
+                            <br> 
+                            [THREATENING]
+                            <img src="images/threat_wrong.png" alt="Correct nested entities example" class="example-image"/>
+                            <div class="reasoning" style="display: none;">
+                                <strong>Reasoning:</strong>
+                                <ul>
+                                    <li>Missing I-GENDER label for "femoids"</li>
+                                    <li>THREATENING alone doesn't capture the gender-based nature of the hate speech</li>
+                                </ul>
+                            </div>
                         </div>
                     </div>
                     <div class="toggle-container">
