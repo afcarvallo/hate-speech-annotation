@@ -865,14 +865,13 @@
                 <div class="box">
                     <h2>Offensive Words</h2>
                     <p>
-                        Tag offensive words, including insults, threats, or calls for violence.
+                        Tag offensive words, including insults, threats, or calls for violence. The words needs to be tagged depending on the context it appears.
                     </p>  
                     
                     <div class="grid-container group-grid">
                     
                         <div class="group-card">
                             "You're such an <span class="highlight-offensive">idiot</span>"
-                            <div class="example-overlay">Offensive words reasoning..."</div>
                         </div>
             
                         <div class="group-card">
@@ -974,6 +973,7 @@
                                         </ul>
                                     </div>
                                 </li>
+
                                 <li>
                                     <p>"ATF , it's good though but unfortunately <span class="hate-annotation" data-label="I-DISSABILITY">nacisssistic sociopaths</span> do not change"</p>
                                     
@@ -997,6 +997,17 @@
                                     </div>
                                 </li>
 
+                                <li>
+                                    <p>"The earthquake was a complete disaster"</p>
+                                    
+                                    <div class="reasoning" style="display: none;">
+                                        <strong>Reasoning:</strong>
+                                        <ul>
+                                            <li>The word "disaster" in this context is not an offensive word, so it should not be annotated.</li>
+                                        </ul>
+                                    </div>
+                                </li>
+
                             </ul>
                         </div>
                         <div class="wrong-examples">
@@ -1004,7 +1015,6 @@
                             <ul>
                                 <li>
                                     <p>"After charlotesville do defenders know about <span class="hate-annotation" data-label="G-ETHNICITY">white people ?</span>"</p>
-                                    <p>"After charlotesville do defenders know about <span class="hate-annotation" data-label="G-ETHNICITY">white</span> people ?"</p>
                                     <p>"Rashard Wright is an <span class="hate-annotation" data-label="I-ETHNICITY">antiwhite</span> extremist at #wearebschools he actively promotes"</p>
                                     <div class="reasoning" style="display: none;">
                                         <strong>Reasoning:</strong>
@@ -1030,6 +1040,17 @@
                                         <strong>Reasoning:</strong>
                                         <ul>
                                             <li>If words have spelling mistakes they should be labeled.</li>
+                                        </ul>
+                                    </div>
+                                </li>
+
+                                <li>
+                                    <p>"The earthquake was a complete <span class="hate-annotation" data-label="OFFENSIVE-WORD">disaster</span>."</p>
+                                    
+                                    <div class="reasoning" style="display: none;">
+                                        <strong>Reasoning:</strong>
+                                        <ul>
+                                            <li>The word "disaster" in this context is not an offensive word, so it should not be annotated.</li>
                                         </ul>
                                     </div>
                                 </li>
