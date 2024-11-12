@@ -633,7 +633,8 @@
         <section id="general-rules">
             <div class="box">
                 <h2>General Rules</h2>
-                <p><strong>Positive</strong>, <strong>negative</strong>, and <strong>multi-word</strong> rules that apply to all mention labels, including general spelling rules.</p>
+                <p><strong>Positive</strong>, <strong>negative</strong>, and <strong>multi-word</strong> rules that apply to all mention labels, including general spelling rules. Also some acronym and hashtag examples that in some cases can be confusing. </p>
+                <p> <strong>NOTE: </strong> If there is doubt it is allowed to search the web, for example the meaning of acronyms or unknown words.</p>
         
                 <!-- Positive Rules Box -->
                 <div class="rule-box">
@@ -655,7 +656,8 @@
                     <h3>Negative Rules</h3>
                     <p>Rules specifying the entities that should <strong>not</strong> be annotated:</p>
                     <ul>
-                        <li>Mentions of groups not considered in the preceding categories.</li>
+                        <li>Group mentions and offensive denominations are exclusive (e.g white killers is an offensive denomination and "white" alone is not labeled.)</li>
+                        <li>The context or location should not be tagged if it is not necessary (e.g "Mcdonalds" or "New York" should not be tagged if it do not add additional information to the attack)</li>
                         <li>Negative connotative adjectives (e.g., "you are so lazy").</li>
                         <li>Words that are implicit attacks in context but not out of context (e.g., "parasite" used in "These dishes are full of parasites").</li>
                     </ul>
@@ -667,6 +669,20 @@
                     <p>Rules specifying whether a group of words should be annotated under a single label:</p>
                     <ul>
                         <li>Both groups, attacks, and offensive mentions can be composed of multi-words (n-grams).</li>
+                    </ul>
+                </div>
+                
+                <!-- Acronym Rules Box -->
+                <div class="rule-box">
+                    <h3>Some relevant Acronyms</h3>
+                    <p>Acronyms that can be relevant to consider in case of doubt:</p>
+                    <ul>
+                        <li><strong>#BLM</strong> "Black Lives Matter" is used to highlight racism, inequality, and discrimination experienced by Black people. </li>
+                        <li><strong>#WPWW</strong> "White Pride Worldwide". Should be annotated as ethnicity. </li>
+                        <li><strong>#HMM</strong> "Hardly Much More." It is frequently employed to convey doubt, scepticism, or introspection.</li>
+                        <li><strong>Sharia</strong> is a set of Islamic laws and religious principles that guide Muslims in their daily lives.</li>
+                        <li><strong>LOL</strong> "Laughing Out Loud" , similar to "jajaja" or "hahaha"</li>
+                        <li><strong>KWANZAA</strong> afroamerican party or festivity. </li>
                     </ul>
                 </div>
             </div>
